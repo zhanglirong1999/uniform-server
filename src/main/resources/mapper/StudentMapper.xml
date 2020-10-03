@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.uniform.model.dao.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Student">
+    <id column="studentId" jdbcType="BIGINT" property="studentid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="schoolNum" jdbcType="VARCHAR" property="schoolnum" />
+    <result column="schoolId" jdbcType="BIGINT" property="schoolid" />
+    <result column="class" jdbcType="VARCHAR" property="class" />
+    <result column="height" jdbcType="VARCHAR" property="height" />
+    <result column="weight" jdbcType="VARCHAR" property="weight" />
+    <result column="chest" jdbcType="VARCHAR" property="chest" />
+    <result column="waistline" jdbcType="VARCHAR" property="waistline" />
+    <result column="hipline" jdbcType="VARCHAR" property="hipline" />
+    <result column="accountId" jdbcType="VARCHAR" property="accountid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from student
+    where studentId = #{studentid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Student">
+    insert into student (studentId, name, gender, 
+      schoolNum, schoolId, class, 
+      height, weight, chest, 
+      waistline, hipline, accountId
+      )
+    values (#{studentid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
+      #{schoolnum,jdbcType=VARCHAR}, #{schoolid,jdbcType=BIGINT}, #{class,jdbcType=VARCHAR}, 
+      #{height,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{chest,jdbcType=VARCHAR}, 
+      #{waistline,jdbcType=VARCHAR}, #{hipline,jdbcType=VARCHAR}, #{accountid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Student">
+    update student
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      schoolNum = #{schoolnum,jdbcType=VARCHAR},
+      schoolId = #{schoolid,jdbcType=BIGINT},
+      class = #{class,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      chest = #{chest,jdbcType=VARCHAR},
+      waistline = #{waistline,jdbcType=VARCHAR},
+      hipline = #{hipline,jdbcType=VARCHAR},
+      accountId = #{accountid,jdbcType=VARCHAR}
+    where studentId = #{studentid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select studentId, name, gender, schoolNum, schoolId, class, height, weight, chest, 
+    waistline, hipline, accountId
+    from student
+    where studentId = #{studentid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select studentId, name, gender, schoolNum, schoolId, class, height, weight, chest, 
+    waistline, hipline, accountId
+    from student
+  </select>
+</mapper>

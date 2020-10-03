@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.uniform.model.dao.mapper.LocationMapper">
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Location">
+    <id column="locationId" jdbcType="BIGINT" property="locationid" />
+    <result column="accountId" jdbcType="VARCHAR" property="accountid" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from location
+    where locationId = #{locationid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Location">
+    insert into location (locationId, accountId, position
+      )
+    values (#{locationid,jdbcType=BIGINT}, #{accountid,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Location">
+    update location
+    set accountId = #{accountid,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR}
+    where locationId = #{locationid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select locationId, accountId, position
+    from location
+    where locationId = #{locationid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select locationId, accountId, position
+    from location
+  </select>
+</mapper>

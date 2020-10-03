@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.uniform.model.dao.mapper.SolicitationMapper">
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Solicitation">
+    <id column="sId" jdbcType="BIGINT" property="sid" />
+    <result column="schoolId" jdbcType="BIGINT" property="schoolid" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from solicitation
+    where sId = #{sid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Solicitation">
+    insert into solicitation (sId, schoolId, count, 
+      description)
+    values (#{sid,jdbcType=BIGINT}, #{schoolid,jdbcType=BIGINT}, #{count,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Solicitation">
+    update solicitation
+    set schoolId = #{schoolid,jdbcType=BIGINT},
+      count = #{count,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR}
+    where sId = #{sid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select sId, schoolId, count, description
+    from solicitation
+    where sId = #{sid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select sId, schoolId, count, description
+    from solicitation
+  </select>
+</mapper>

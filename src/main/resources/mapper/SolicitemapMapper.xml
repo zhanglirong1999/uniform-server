@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.uniform.model.dao.mapper.SolicitemapMapper">
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Solicitemap">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="solicitId" jdbcType="BIGINT" property="solicitid" />
+    <result column="productId" jdbcType="BIGINT" property="productid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from soliciteMap
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Solicitemap">
+    insert into soliciteMap (id, solicitId, productId
+      )
+    values (#{id,jdbcType=INTEGER}, #{solicitid,jdbcType=BIGINT}, #{productid,jdbcType=BIGINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Solicitemap">
+    update soliciteMap
+    set solicitId = #{solicitid,jdbcType=BIGINT},
+      productId = #{productid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, solicitId, productId
+    from soliciteMap
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, solicitId, productId
+    from soliciteMap
+  </select>
+</mapper>

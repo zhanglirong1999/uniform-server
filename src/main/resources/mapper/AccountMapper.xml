@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.uniform.model.dao.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Account">
+    <id column="accountId" jdbcType="VARCHAR" property="accountid" />
+    <result column="openId" jdbcType="VARCHAR" property="openid" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="lastTime" jdbcType="TIMESTAMP" property="lasttime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from account
+    where accountId = #{accountid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Account">
+    insert into account (accountId, openId, wechat, 
+      name, avatar, lastTime
+      )
+    values (#{accountid,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{lasttime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Account">
+    update account
+    set openId = #{openid,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      lastTime = #{lasttime,jdbcType=TIMESTAMP}
+    where accountId = #{accountid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select accountId, openId, wechat, name, avatar, lastTime
+    from account
+    where accountId = #{accountid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select accountId, openId, wechat, name, avatar, lastTime
+    from account
+  </select>
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Account">
+    <id column="accountId" jdbcType="VARCHAR" property="accountid" />
+    <result column="openId" jdbcType="VARCHAR" property="openid" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="lastTime" jdbcType="TIMESTAMP" property="lasttime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from account
+    where accountId = #{accountid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Account">
+    insert into account (accountId, openId, wechat, 
+      name, avatar, lastTime
+      )
+    values (#{accountid,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{lasttime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Account">
+    update account
+    set openId = #{openid,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      lastTime = #{lasttime,jdbcType=TIMESTAMP}
+    where accountId = #{accountid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select accountId, openId, wechat, name, avatar, lastTime
+    from account
+    where accountId = #{accountid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select accountId, openId, wechat, name, avatar, lastTime
+    from account
+  </select>
+</mapper>

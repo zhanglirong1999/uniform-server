@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.uniform.model.dao.mapper.TagMapper">
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Tag">
+    <id column="tagId" jdbcType="BIGINT" property="tagid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tag
+    where tagId = #{tagid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Tag">
+    insert into tag (tagId, name, description, 
+      deleted)
+    values (#{tagid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Tag">
+    update tag
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=INTEGER}
+    where tagId = #{tagid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select tagId, name, description, deleted
+    from tag
+    where tagId = #{tagid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select tagId, name, description, deleted
+    from tag
+  </select>
+</mapper>

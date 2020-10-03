@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.uniform.model.dao.mapper.PurchaseMapper">
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Purchase">
+    <id column="orderId" jdbcType="BIGINT" property="orderid" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="accountId" jdbcType="VARCHAR" property="accountid" />
+    <result column="schoolId" jdbcType="BIGINT" property="schoolid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="buyTime" jdbcType="TIMESTAMP" property="buytime" />
+    <result column="form" jdbcType="VARCHAR" property="form" />
+    <result column="positionId" jdbcType="BIGINT" property="positionid" />
+    <result column="total" jdbcType="VARCHAR" property="total" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from purchase
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Purchase">
+    insert into purchase (orderId, state, number, 
+      accountId, schoolId, type, 
+      buyTime, form, positionId, 
+      total)
+    values (#{orderid,jdbcType=BIGINT}, #{state,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{accountid,jdbcType=VARCHAR}, #{schoolid,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, 
+      #{buytime,jdbcType=TIMESTAMP}, #{form,jdbcType=VARCHAR}, #{positionid,jdbcType=BIGINT}, 
+      #{total,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Purchase">
+    update purchase
+    set state = #{state,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      accountId = #{accountid,jdbcType=VARCHAR},
+      schoolId = #{schoolid,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR},
+      buyTime = #{buytime,jdbcType=TIMESTAMP},
+      form = #{form,jdbcType=VARCHAR},
+      positionId = #{positionid,jdbcType=BIGINT},
+      total = #{total,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select orderId, state, number, accountId, schoolId, type, buyTime, form, positionId, 
+    total
+    from purchase
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select orderId, state, number, accountId, schoolId, type, buyTime, form, positionId, 
+    total
+    from purchase
+  </select>
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Purchase">
+    <id column="orderId" jdbcType="BIGINT" property="orderid" />
+    <result column="productId" jdbcType="BIGINT" property="productid" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="accountId" jdbcType="VARCHAR" property="accountid" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from purchase
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Purchase">
+    insert into purchase (orderId, productId, state, 
+      number, accountId, count, 
+      type)
+    values (#{orderid,jdbcType=BIGINT}, #{productid,jdbcType=BIGINT}, #{state,jdbcType=VARCHAR}, 
+      #{number,jdbcType=VARCHAR}, #{accountid,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Purchase">
+    update purchase
+    set productId = #{productid,jdbcType=BIGINT},
+      state = #{state,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      accountId = #{accountid,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select orderId, productId, state, number, accountId, count, type
+    from purchase
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select orderId, productId, state, number, accountId, count, type
+    from purchase
+  </select>
+</mapper>

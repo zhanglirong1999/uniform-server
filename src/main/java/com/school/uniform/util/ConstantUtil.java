@@ -1,0 +1,65 @@
+package com.school.uniform.util;
+
+import com.school.uniform.common.IdGenerator;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ConstantUtil {
+    static IdGenerator idGenerator;
+
+    @AllArgsConstructor
+    public enum BizExceptionCause{
+        MISMATCH(1,"不匹配"),
+        TRY_EXCEED(2,"超过最大尝试次数"),
+        TIME_EXCEED(3,"超时"),
+        NOT_FOUND(4,"无效token"),
+        LOW_AUTHORITY(5,"权限不够"),
+        NOT_LOGINED(6,"未登录"),
+        NOT_OPENID(7,"获取openid失败"),
+        NOT_USER(8,"找不到此用户"),
+        NOT_TAG(9,"请填写标签名称"),
+        LOSS_NAME(10,"请填写姓名"),
+        LOSS_GENDER(11,"请填写性别"),
+        LOSS_ADMINPHONE(12,"管理员电话为空"),
+        LOSS_ADMINNAME(13,"管理员姓名名为空"),
+        LOSS_VERIFY(14,"缺少验证码"),
+        ERROR_VERIFY(15,"管理员验证码格式非法"),
+        ERROR_PHONE(16,"当前的需要发出的手机号不为 1 个"),
+        PAST_CODE(17,"验证码已失效, 请重新获取!"),
+        ERROR_CODE(18,"验证码不正确, 请重新获取!"),
+        LOSS_DETAIL(19,"商品信息请填写完整"),
+        LOSS_SCHOOLNAME(20,"请填写学校"),
+        ERROR_GENDER(21,"无法识别性别"),
+        LOSS_SEX(22,"请选择男女"),
+        LOSS_SIZE(23,"请选择大小"),
+        LOSS_COUNT(24,"缺少数量"),
+        ERROR_INFOSHOP(25,"购物车信息错误，查找不到对应商品"),
+        LOSS_POSITION(26,"请填写地址"),
+        ERROR_STATE(27,"没有此状态"),
+        HAVE_SEND(28,"此货物已经发货"),
+        IS_SHOPPING(29,"订单错误，尚未购买"),
+        LOSS_PHONE(30,"缺少电话"),
+        ERROR_NUM(31,"商品数和最少数不匹配")
+
+        ;
+        public final Integer code;
+        public final String reason;//解释
+
+    }
+
+    static {
+//        idGenerator = new SnowflakeIdGenerator(0, 0);
+        idGenerator = new IdGenerator();
+    }
+
+    /**
+     * bigint生成器
+     * @return
+     */
+    public static long generateId() {
+        return idGenerator.nextId();
+    }
+
+
+}

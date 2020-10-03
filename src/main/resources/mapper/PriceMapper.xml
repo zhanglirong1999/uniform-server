@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.uniform.model.dao.mapper.PriceMapper">
+  <resultMap id="BaseResultMap" type="com.school.uniform.model.dao.entity.Price">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="productId" jdbcType="BIGINT" property="productid" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="style" jdbcType="VARCHAR" property="style" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from price
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.school.uniform.model.dao.entity.Price">
+    insert into price (id, productId, price, 
+      size, style, img)
+    values (#{id,jdbcType=BIGINT}, #{productid,jdbcType=BIGINT}, #{price,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{style,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.school.uniform.model.dao.entity.Price">
+    update price
+    set productId = #{productid,jdbcType=BIGINT},
+      price = #{price,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      style = #{style,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, productId, price, size, style, img
+    from price
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, productId, price, size, style, img
+    from price
+  </select>
+</mapper>
