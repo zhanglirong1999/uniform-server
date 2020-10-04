@@ -15,4 +15,5 @@ public interface SolicitaionService {
     void postSolicit(PostSolicit solicit);
     Object getList();
     List getProduct(Long sid);
+    Object getUserSolicit(Long sids);
 }

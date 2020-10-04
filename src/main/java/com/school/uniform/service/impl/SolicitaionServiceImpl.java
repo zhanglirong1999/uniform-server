@@ -166,4 +166,41 @@ public class SolicitaionServiceImpl implements SolicitaionService {
         }
         return list;
     }
+
+    @Override
+    public Object getUserSolicit(Long sids) {
+        Solicitation solicitation = solicitationMapper.selectOneByExample(
+                Example.builder(Solicitation.class).where(Sqls.custom().andEqualTo("sid",sids))
+                        .build()
+        );
+        Iterator<SoliciteMap> iterator = solicitemapMapper.selectByExample(
+                Example.builder(SoliciteMap.class).where(Sqls.custom().andEqualTo("solicitId",sids))
+                        .build()
+        ).iterator();
+        Map<String,Object> maps = new HashMap<>();
+        maps.put("sid",sids);
+        maps.put("school",schoolMapper.getSchoolName(solicitation.getSchoolId()));
+        maps.put("description",solicitation.getDescription());
+        List list = new LinkedList();
+        while (iterator.hasNext()){
+            Map<String,Object> map = new HashMap<>();
+            SoliciteMap soliciteMap = iterator.next();
+            Product product = productMapper.selectOneByExample(
+                    Example.builder(Product.class).where(Sqls.custom().andEqualTo("productId",soliciteMap.getProductId()))
+                            .build()
+            );
+            Map<String,Object> maping = new HashMap<>();
+            maping.put("productId",product.getProductId());
+            maping.put("productName",product.getProductName());
+            maping.put("type",product.getType());
+            maping.put("img",product.getImg());
+            maping.put("price",product.getPrice());
+            maping.put("freight",product.getFreight());
+            maping.put("description",product.getDescription());
+            maping.put("count",soliciteMap.getCount());
+            list.add(maping);
+        }
+        maps.put("product",list);
+        return maps;
+    }
 }

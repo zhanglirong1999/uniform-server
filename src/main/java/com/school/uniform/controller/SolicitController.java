@@ -1,12 +1,16 @@
 package com.school.uniform.controller;
 
+import com.school.uniform.common.CONST;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.model.dto.post.AddSolicite;
 import com.school.uniform.model.dto.post.PostSolicit;
 import com.school.uniform.service.SolicitaionService;
+import com.school.uniform.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin
@@ -15,7 +19,11 @@ import org.springframework.web.bind.annotation.*;
 public class SolicitController {
     @Autowired
     private SolicitaionService solicitaionService;
+    @Autowired
+    private HttpServletRequest request;
 
+    @Autowired
+    private RedisUtil redisUtil;
     /**
      * 新增征订订单
      * @param addSolicite
@@ -59,12 +67,22 @@ public class SolicitController {
     }
 
     /**
-     * 显示征订的商品列表
+     * 显示征订的商品列表(管理员
      * @return
      */
     @TokenRequired
     @GetMapping("/list")
     public Object getList(){
+        String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
+        Long sid = redisUtil.getSolicitId(accountId);
         return solicitaionService.getList();
+    }
+
+    @TokenRequired
+    @GetMapping("/user")
+    public Object getUserSolicit(){
+        String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
+        Long sid = redisUtil.getSolicitId(accountId);
+        return solicitaionService.getUserSolicit(sid);
     }
 }

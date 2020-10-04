@@ -90,7 +90,9 @@ public class ProductController {
     @GetMapping("/list")
     public Object getSchoolList(
     ){
-        Long schoolId = redisUtil.getSchoolId();
+        String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
+
+        Long schoolId = redisUtil.getSchoolId(accountId);
         return productService.getSchoolList(schoolId);
     }
 
@@ -102,11 +104,13 @@ public class ProductController {
     @TokenRequired
     @PostMapping("/add")
     public Object addProduct(
-            @RequestBody ProductAdd productAdd
+            @ModelAttribute ProductAdd productAdd
             ){
         productService.productAdd(productAdd);
         return "新增成功";
     }
+
+
 
     /**
      * 加入购物车
@@ -145,11 +149,26 @@ public class ProductController {
     @PostMapping("/purchase")
     public Object purchase(
             @RequestBody Purchase1 purchaseShop
-            ){
+
+    ){
         String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
-        productService.purchase(purchaseShop,accountId);
-        return "购买成功";
+        return  productService.purchase(purchaseShop,accountId);
     }
+
+    @TokenRequired
+    @PostMapping("/purchase2")
+    public Object purchase2(
+            @RequestParam String isBuy,
+            @RequestParam Long orderId
+    ){
+        if ((isBuy.equals("1"))){
+            return productService.hasBuy(orderId);
+        }
+        else {
+            return "支付失败";
+        }
+    }
+
 
     /**
      * 查看购物车
@@ -211,6 +230,29 @@ public class ProductController {
             ){
         productService.sendProduct(send);
         return "单号填写成功";
+    }
+
+    /**
+     * 获取质检文件的url
+     * @param productId
+     * @return
+     */
+    @TokenRequired
+    @GetMapping("/file")
+    public Object getFileUrl(
+            @RequestParam Long productId
+    ){
+        return productService.getFileUrl(productId);
+    }
+
+    @TokenRequired
+    @GetMapping("/order/search")
+    public Object getSearch(
+            @RequestParam Long schoolId,
+            @RequestParam String state,
+            @RequestParam String type
+    ){
+        return productService.getSearchBy(schoolId, state, type);
     }
 
 

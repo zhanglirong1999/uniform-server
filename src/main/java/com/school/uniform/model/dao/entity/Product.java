@@ -32,6 +32,8 @@ public class Product {
 
     private String price;
 
+    private Integer sex;
+
     @LogicDelete(notDeletedValue = 0,isDeletedValue = 1)
     private Integer deleted;
 }

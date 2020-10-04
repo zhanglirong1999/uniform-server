@@ -13,15 +13,16 @@ public class CONST {
 //    public static final int FRIEND_ACTION_N = 0;
 
     // wx 参数
-    public static final String appId = "未定";
-    public static final String appSecret = "未定";
-
+    public static final String appId = "wx46e0f3ded2190ecf";
+    public static final String appSecret = "a5ba3736dbf6a66715b43fc05ab3f8db";
+  //  "a5ba3736dbf6a66715b43fc05ab3f8db"
     // ACL Key
     public static final String ACL_ACCOUNTID = "accountId";
     public static final String SCHOOL_ID ="schoolId";
+    public static final String SOLICIT_ID="sid";
 
-    public static final String ManAvatar ="";
-    public static final String WomanAvatar ="";
+    public static final String ManAvatar ="https://uniform-nj-1301042386.cos.ap-nanjing.myqcloud.com/38114208764928.jpg";
+    public static final String WomanAvatar ="https://uniform-nj-1301042386.cos.ap-nanjing.myqcloud.com/38114152631296.jpg";
 
 
 }

@@ -47,7 +47,7 @@
 
         <!-- 这里就是每次要修改生成的表 -->
         <table schema="uniform"
-               tableName="shopping"
+               tableName="file"
                enableCountByExample="true" enableDeleteByExample="true"
                enableSelectByExample="true" enableUpdateByExample="true">
         </table>

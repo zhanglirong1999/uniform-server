@@ -24,4 +24,10 @@ public interface ProductMapper extends Mapper<Product> {
     @Select("SELECT freight FROM product where productId =${productId}")
     String getFreight(Long productId);
 
+    @Select("SELECT productName FROM product where productId =${productId}")
+    String getProductName(Long productId);
+
+    @Select("SELECT img FROM product where productId =${productId}")
+    String getProductImg(Long productId);
+
 }

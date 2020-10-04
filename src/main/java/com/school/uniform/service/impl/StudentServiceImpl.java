@@ -53,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
         if(studentInfo.getWaistline()!=null){
         student.setWaistline(studentInfo.getWaistline());}
 
-        Long schoolId = redisUtil.getSchoolId();  //schoolId
+        Long schoolId = redisUtil.getSchoolId(accountId);  //schoolId
         student.setSchoolId(schoolId);
         studentMapper.insertSelective(student);
     }
@@ -112,7 +112,7 @@ public class StudentServiceImpl implements StudentService {
             throw new BizException(ConstantUtil.BizExceptionCause.LOSS_GENDER);
         }
         String schoolNum=putStudent.getSchoolNum();
-        Long schoolId= redisUtil.getSchoolId();
+        Long schoolId= redisUtil.getSchoolId(accountId);
         String class1=putStudent.getClass1();
         String height=putStudent.getHeight();
         String weight=putStudent.getWeight();

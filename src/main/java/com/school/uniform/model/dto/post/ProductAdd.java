@@ -23,7 +23,7 @@ public class ProductAdd {
     String tag;
     String schoolName;
     MultipartFile file;
-//    @JsonProperty(value = "detail")
-//    List<Detail>  detail;
-
+    Integer sex;
+    String[] size;
+    String[] price;
 }

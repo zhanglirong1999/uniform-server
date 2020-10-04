@@ -64,7 +64,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Object getStudentList(String accountId) {
-        Long schoolId = redisUtil.getSchoolId();
+        Long schoolId = redisUtil.getSchoolId(accountId);
         Iterator<Student> iterator =  studentMapper.selectByExample(
                 Example.builder(Student.class).where(Sqls.custom().andEqualTo("accountId",accountId).
                         andEqualTo("schoolId",schoolId))

@@ -32,5 +32,8 @@ public class Purchase {
 
     private String total;
 
+    @Column(name = "schoolId")
+    private Long schoolId;
+
 
 }
