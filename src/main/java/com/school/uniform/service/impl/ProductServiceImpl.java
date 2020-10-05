@@ -80,9 +80,8 @@ public class ProductServiceImpl implements ProductService {
                 unSendSum++;
             }
         }
-        Integer school = schoolMapper.selectCountByExample(
-                Example.builder(School.class).where(Sqls.custom().andEqualTo("deleted",0)
-        ));
+
+        Integer school = schoolMapper.getSchoolSum();
         map.put("money",moneySum);
         map.put("order",orderSum);
         map.put("unshipped",unSendSum);
@@ -571,6 +570,9 @@ public class ProductServiceImpl implements ProductService {
                 Example.builder(Purchase.class).where(Sqls.custom().andEqualTo("orderId",orderId))
                         .build()
         );
+        if(!purchase.getState().equals("0")){
+            throw new BizException(ConstantUtil.BizExceptionCause.NO_BUYTWO);
+        }
         purchase.setState("1");
         purchaseMapper.updateByExampleSelective(
                 purchase,Example.builder(Purchase.class).where(Sqls.custom().andEqualTo("orderId",orderId))

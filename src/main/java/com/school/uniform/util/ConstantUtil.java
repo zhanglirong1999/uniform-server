@@ -51,7 +51,8 @@ public class ConstantUtil {
         LOSS_PHONE(30,"缺少电话"),
         ERROR_NUM(31,"商品数和最少数不匹配"),
         ERROR_SIZEANDPRICE(32,"大小和价格数目不匹配"),
-        NO_SOLICIT(33,"没有此征订订单")
+        NO_SOLICIT(33,"没有此征订订单"),
+        NO_BUYTWO(34,"不能重复购买此订单")
 
         ;
         public final Integer code;

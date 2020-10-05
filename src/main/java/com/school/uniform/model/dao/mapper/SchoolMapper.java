@@ -16,5 +16,8 @@ public interface SchoolMapper extends Mapper<School> {
     @Select("SELECT name from school where schoolId =${schoolId}")
         String getSchoolName(long schoolId);
 
+    @Select("SELECT count(*) from school where deleted=0")
+    Integer getSchoolSum();
+
 
 }
