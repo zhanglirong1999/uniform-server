@@ -1,11 +1,9 @@
 package com.school.uniform.service.impl;
 
 import com.school.uniform.exception.BizException;
-import com.school.uniform.model.dao.entity.Product;
-import com.school.uniform.model.dao.entity.Purchase;
-import com.school.uniform.model.dao.entity.School;
-import com.school.uniform.model.dao.entity.Tag;
+import com.school.uniform.model.dao.entity.*;
 import com.school.uniform.model.dao.mapper.SchoolMapper;
+import com.school.uniform.model.dao.mapper.StudentMapper;
 import com.school.uniform.model.dao.mapper.TagMapper;
 import com.school.uniform.model.dto.post.SchoolAdd;
 import com.school.uniform.model.dto.post.TagAdd;
@@ -16,11 +14,16 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.Sqls;
 
+import java.util.*;
+
 @Service
 public class SchoolServiceImpl implements SchoolService {
 
     @Autowired
     private SchoolMapper schoolMapper;
+
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Override
     public void addSchool(SchoolAdd schoolAdd) {
@@ -69,6 +72,32 @@ public class SchoolServiceImpl implements SchoolService {
                 Example.builder(School.class).where(Sqls.custom().andEqualTo("deleted",0))
                         .build()
         );
+    }
+
+    @Override
+    public Object getUserStudent(Long schoolId, String accountId) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("schoolId",schoolId);
+        School school = schoolMapper.selectOneByExample(
+                Example.builder(School.class).where(Sqls.custom().andEqualTo("schoolId",schoolId))
+                        .build()
+        );
+        String des = school.getDescription();
+        String name = school.getName();
+        map.put("name",name);
+        map.put("description",des);
+        Iterator<Student> iterator = studentMapper.selectByExample(
+                Example.builder(Student.class).where(Sqls.custom().andEqualTo("schoolId",schoolId)
+                .andEqualTo("accountId",accountId))
+                        .build()
+        ).iterator();
+        List<Long> studentIds = new LinkedList<>();
+        while (iterator.hasNext()){
+            Student student = iterator.next();
+            studentIds.add(student.getStudentId());
+        }
+        map.put("studentId",studentIds);
+        return map;
     }
 
 

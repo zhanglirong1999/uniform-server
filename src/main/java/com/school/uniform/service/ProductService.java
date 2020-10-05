@@ -27,4 +27,5 @@ public interface ProductService {
     String getFileUrl(Long productId);
     Object getSearchBy(Long schoolId ,String state,String type);
     Object hasBuy(Long orderId);
+    void postProduct(ProductPost productPost);
 }

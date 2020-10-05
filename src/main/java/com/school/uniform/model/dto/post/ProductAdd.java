@@ -21,7 +21,7 @@ public class ProductAdd {
     String freight;
     MultipartFile img;
     String tag;
-    String schoolName;
+    Long schoolId;
     MultipartFile file;
     Integer sex;
     String[] size;

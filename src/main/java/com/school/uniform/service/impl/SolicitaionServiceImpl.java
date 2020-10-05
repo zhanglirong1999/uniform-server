@@ -67,6 +67,14 @@ public class SolicitaionServiceImpl implements SolicitaionService {
     @Override
     public void deleteSolicit(Long sid) {
         System.out.println("hh");
+        Solicitation solicitation = solicitationMapper.selectOneByExample(
+                Example.builder(Solicitation.class).where(Sqls.custom().andEqualTo("sid",sid))
+                        .build()
+        );
+        if (solicitation==null){
+            throw new BizException(ConstantUtil.BizExceptionCause.NO_SOLICIT);
+        }
+
         solicitationMapper.deleteByExample(
                 Example.builder(Solicitation.class).where(Sqls.custom().andEqualTo("sid",sid))
                         .build()
@@ -81,6 +89,13 @@ public class SolicitaionServiceImpl implements SolicitaionService {
     @Override
     public void postSolicit(PostSolicit solicit) {
         Long sid = solicit.getSid();
+        Solicitation solicitation_ = solicitationMapper.selectOneByExample(
+                Example.builder(Solicitation.class).where(Sqls.custom().andEqualTo("sid",sid))
+                        .build()
+        );
+        if (solicitation_==null){
+            throw new BizException(ConstantUtil.BizExceptionCause.NO_SOLICIT);
+        }
         String des = solicit.getDescription();
         Long[] productIds= solicit.getProductId();
         Integer[] count = solicit.getCount();

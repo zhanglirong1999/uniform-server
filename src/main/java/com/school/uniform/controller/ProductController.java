@@ -110,6 +110,15 @@ public class ProductController {
         return "新增成功";
     }
 
+    @TokenRequired
+    @PostMapping("/change")
+    public Object postProduct(
+            @ModelAttribute ProductPost productPost
+    ){
+        productService.postProduct(productPost);
+        return "修改成功";
+    }
+
 
 
     /**

@@ -8,6 +8,7 @@ import com.school.uniform.exception.BizException;
 import com.school.uniform.service.GetWxAccessCodeTask;
 import com.school.uniform.service.ProductService;
 import com.school.uniform.service.QCloudFileManager;
+import com.school.uniform.service.SchoolService;
 import com.school.uniform.util.ConstantUtil;
 import com.school.uniform.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,9 @@ public class UtilController {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private SchoolService schoolService;
+
     @TokenRequired
     @GetMapping("/scene")
     public Object getSchool(
@@ -57,9 +61,11 @@ public class UtilController {
             redisUtil.setSolicitId(solicitId,accountId);
             System.out.println(redisUtil.getSolicitId(accountId));
         }
+        Long schoolIds = redisUtil.getSchoolId(accountId);    //无论是通过学校id还是征订id都需要把学校id存在redis中
 
-    return sid;
+        return schoolService.getUserStudent(schoolIds,accountId);
     }
+
 
     @PostMapping("/getCode")
     public Object getAccessToken(

@@ -11,4 +11,5 @@ public interface SchoolService {
     void putSchool(School school);
     void deleteSchool(Long schoolId);
     Object getSchoolList();
+    Object getUserStudent(Long schoolId,String accountId);
 }

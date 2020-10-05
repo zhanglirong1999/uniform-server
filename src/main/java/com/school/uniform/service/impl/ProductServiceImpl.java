@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
     public Object getProductList() {
         Map<String,Object> map = new HashMap<>();
         Iterator<Purchase> iterator = purchaseMapper.selectByExample(
-                Example.builder(Purchase.class).where(Sqls.custom().andEqualTo("state",1).
+                Example.builder(Purchase.class).where(Sqls.custom().andEqualTo("state","1").
                         orEqualTo("state","2"))
                         .build()
         ).iterator();
@@ -73,6 +73,7 @@ public class ProductServiceImpl implements ProductService {
         Integer unSendSum=0;
         while (iterator.hasNext()){
             Purchase purchase = iterator.next();
+            System.out.println( purchase);
             moneySum +=Double.valueOf( purchase.getTotal());
             orderSum++;
             if(purchase.getState().equals("1")){
@@ -143,6 +144,7 @@ public class ProductServiceImpl implements ProductService {
         String description = productAdd.getDescription();
         String freight = productAdd.getFreight();
         Integer sex = productAdd.getSex();
+        Long schoolId = productAdd.getSchoolId();
         String img=null;
         if(productAdd.getImg()!=null) {
              img = uploadFile(productAdd.getImg());  //上传图片并且生成url
@@ -170,6 +172,7 @@ public class ProductServiceImpl implements ProductService {
         product.setFreight(freight);
         product.setType(tag);
         product.setSex(sex);
+        product.setSchoolId(schoolId);
         String price="10000.0";
         if(sizes.length!=prices.length){
             throw new BizException(ConstantUtil.BizExceptionCause.ERROR_SIZEANDPRICE);
@@ -183,13 +186,12 @@ public class ProductServiceImpl implements ProductService {
                     price = price1;
                 }  //将最低价格作为商品价格保存
                 Long id = ConstantUtil.generateId();
-                if(price1.equals("")||size.equals("")||sex==null){
+                if(price1.equals("")||size.equals("")){
                     throw new BizException(ConstantUtil.BizExceptionCause.LOSS_DETAIL);
                 }
                 Price productSon = new Price();
                 productSon.setId(id);
                 productSon.setPrice(price1);
-                productSon.setSex(sex);
                 productSon.setSize(size);
                 productSon.setProductId(productId);
                 priceMapper.insert(productSon);
@@ -231,6 +233,7 @@ public class ProductServiceImpl implements ProductService {
         shopping1.setSex(sex);
         shopping1.setCount(count);
         shopping1.setSize(size);
+        shopping1.setAccountId(accountId);
 
         shoppingMapper.insert(shopping1);
     }
@@ -247,6 +250,7 @@ public class ProductServiceImpl implements ProductService {
         map.put("freight",product.getFreight());
         map.put("img",product.getImg());
         map.put("tag",product.getType());
+        map.put("sex",product.getSex());
         Iterator<Price> iterator = priceMapper.selectByExample(
                 Example.builder(Price.class).where(Sqls.custom().andEqualTo("productId",productId))
                         .build()
@@ -357,7 +361,7 @@ public class ProductServiceImpl implements ProductService {
             Integer sex = shopping.getSex();
             Price price = priceMapper.selectOneByExample(
                     Example.builder(Price.class).where(Sqls.custom().andEqualTo("productId",productId)
-                    .andEqualTo("size",size).andEqualTo("sex",sex))
+                    .andEqualTo("size",size))
                             .build()
             );
             String pricing = price.getPrice();
@@ -573,5 +577,89 @@ public class ProductServiceImpl implements ProductService {
                         .build()
         );
         return "下单成功";
+    }
+
+    @Override
+    public void postProduct(ProductPost productPost) {
+        System.out.println(productPost);
+        Long productId = productPost.getProductId();
+        Product product = productMapper.selectOneByExample(
+                Example.builder(Product.class).where(Sqls.custom().andEqualTo("productId",productId))
+                        .build()
+        );
+        String proName = productPost.getProductName();
+        String description = productPost.getDescription();
+        String freight = productPost.getFreight();
+        Integer sex = productPost.getSex();
+        Long schoolId = productPost.getSchoolId();
+        String img=null;
+        if(productPost.getImg()!=null) {
+            img = uploadFile(productPost.getImg());  //上传图片并且生成url
+            product.setImg(img);
+        }
+        String file=null;
+        if(productPost.getFile()!=null) {
+            file = uploadFile(productPost.getFile());
+            File file1 = new File();
+            file1.setProductId(productId);
+            file1.setUrl(file);
+            fileMapper.updateByExample(file1,
+                    Example.builder(File.class).where(Sqls.custom().andEqualTo("productId",productId))
+                            .build()
+                    );
+        }
+        String[] sizes = productPost.getSize();
+        String[] prices = productPost.getPrice();
+        if (!proName.equals("")) {
+            product.setProductName(proName);
+        }
+        if (!description.equals("")) {
+            product.setDescription(description);
+        }
+        if (!freight.equals("")) {
+            product.setFreight(freight);
+        }
+        if (sex!=null) {
+            product.setSex(sex);
+        }
+        if(schoolId!=null){
+            product.setSchoolId(schoolId);
+        }
+        String price="10000.0";
+        if(sizes.length!=prices.length){
+            throw new BizException(ConstantUtil.BizExceptionCause.ERROR_SIZEANDPRICE);
+        }
+        if(sizes.length!=0){
+            //先清空
+            priceMapper.deleteByExample(
+                    Example.builder(Price.class).where(Sqls.custom().andEqualTo("productId",productId))
+                            .build()
+            );
+            for(int i=0;i<sizes.length;i++){
+                String price1 = prices[i];
+                String size = sizes[i];
+                if(Double.valueOf(price)>Double.valueOf(price1)){
+                    price = price1;
+                }  //将最低价格作为商品价格保存
+                Long id = ConstantUtil.generateId();
+                if(price1.equals("")||size.equals("")){
+                    throw new BizException(ConstantUtil.BizExceptionCause.LOSS_DETAIL);
+                }
+                Price productSon = new Price();
+                productSon.setId(id);
+                productSon.setPrice(price1);
+                productSon.setSize(size);
+                productSon.setProductId(productId);
+                priceMapper.insert(productSon);
+            }
+            product.setPrice(price);
+        }
+
+
+//        productMapper.insert(product);
+        productMapper.updateByExample(
+                product,Example.builder(Product.class).where(Sqls.custom().andEqualTo("productId",productId))
+                        .build()
+        );
     }
 }
