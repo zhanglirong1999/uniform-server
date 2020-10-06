@@ -1,4 +1,4 @@
-package com.github.wxpay.sdk;
+package com.school.uniform.common.wxpay;
 
 import org.w3c.dom.Document;
 

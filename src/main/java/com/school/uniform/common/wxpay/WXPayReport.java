@@ -1,4 +1,5 @@
-package com.github.wxpay.sdk;
+package com.school.uniform.common.wxpay;
+
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

@@ -1,6 +1,7 @@
-package com.github.wxpay.sdk;
+package com.school.uniform.common.wxpay;
 
-import com.github.wxpay.sdk.WXPayConstants.SignType;
+
+import com.school.uniform.common.config.IWxPayConfig;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
 public class WXPay {
 
     private WXPayConfig config;
-    private SignType signType;
+    private WXPayConstants.SignType signType;
     private boolean autoReport;
     private boolean useSandbox;
     private String notifyUrl;
@@ -41,12 +42,15 @@ public class WXPay {
         this.autoReport = autoReport;
         this.useSandbox = useSandbox;
         if (useSandbox) {
-            this.signType = SignType.MD5; // 沙箱环境
+            this.signType = WXPayConstants.SignType.MD5; // 沙箱环境
         }
         else {
-            this.signType = SignType.HMACSHA256;
+            this.signType = WXPayConstants.SignType.HMACSHA256;
         }
         this.wxPayRequest = new WXPayRequest(config);
+    }
+
+    public WXPay(IWxPayConfig iWxPayConfig) {
     }
 
     private void checkWXPayConfig() throws Exception {
@@ -87,10 +91,10 @@ public class WXPay {
         reqData.put("appid", config.getAppID());
         reqData.put("mch_id", config.getMchID());
         reqData.put("nonce_str", WXPayUtil.generateNonceStr());
-        if (SignType.MD5.equals(this.signType)) {
+        if (WXPayConstants.SignType.MD5.equals(this.signType)) {
             reqData.put("sign_type", WXPayConstants.MD5);
         }
-        else if (SignType.HMACSHA256.equals(this.signType)) {
+        else if (WXPayConstants.SignType.HMACSHA256.equals(this.signType)) {
             reqData.put("sign_type", WXPayConstants.HMACSHA256);
         }
         reqData.put("sign", WXPayUtil.generateSignature(reqData, config.getKey(), this.signType));
@@ -118,20 +122,20 @@ public class WXPay {
      */
     public boolean isPayResultNotifySignatureValid(Map<String, String> reqData) throws Exception {
         String signTypeInData = reqData.get(WXPayConstants.FIELD_SIGN_TYPE);
-        SignType signType;
+        WXPayConstants.SignType signType;
         if (signTypeInData == null) {
-            signType = SignType.MD5;
+            signType = WXPayConstants.SignType.MD5;
         }
         else {
             signTypeInData = signTypeInData.trim();
             if (signTypeInData.length() == 0) {
-                signType = SignType.MD5;
+                signType = WXPayConstants.SignType.MD5;
             }
             else if (WXPayConstants.MD5.equals(signTypeInData)) {
-                signType = SignType.MD5;
+                signType = WXPayConstants.SignType.MD5;
             }
             else if (WXPayConstants.HMACSHA256.equals(signTypeInData)) {
-                signType = SignType.HMACSHA256;
+                signType = WXPayConstants.SignType.HMACSHA256;
             }
             else {
                 throw new Exception(String.format("Unsupported sign_type: %s", signTypeInData));

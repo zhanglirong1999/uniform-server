@@ -7,10 +7,9 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
 
 @Component
@@ -52,7 +51,8 @@ public class ConstantUtil {
         ERROR_NUM(31,"商品数和最少数不匹配"),
         ERROR_SIZEANDPRICE(32,"大小和价格数目不匹配"),
         NO_SOLICIT(33,"没有此征订订单"),
-        NO_BUYTWO(34,"不能重复购买此订单")
+        NO_BUYTWO(34,"不能重复购买此订单"),
+        ERROR_PAY(35,"微信支付统一下单失败")
 
         ;
         public final Integer code;
@@ -88,6 +88,43 @@ public class ConstantUtil {
         // 然后应该删除项目目录下的本地文件
         File targetFile = new File(System.getProperty("user.dir") + File.separator + fileName);
         return targetFile.delete();
+    }
+
+    /**
+     * @param requestUrl    请求地址
+     * @param requestMethod 请求方法
+     * @param outputStr     参数
+     */
+    public static String httpRequest(String requestUrl, String requestMethod, String outputStr) {
+        // 创建SSLContext
+        StringBuffer buffer = null;
+        try {
+            URL url = new URL(requestUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod(requestMethod);
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.connect();
+            //往服务器端写内容
+            if (null != outputStr) {
+                OutputStream os = conn.getOutputStream();
+                os.write(outputStr.getBytes("utf-8"));
+                os.close();
+            }
+            // 读取服务器端返回的内容
+            InputStream is = conn.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is, "utf-8");
+            BufferedReader br = new BufferedReader(isr);
+            buffer = new StringBuffer();
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                buffer.append(line);
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return buffer.toString();
     }
 
 

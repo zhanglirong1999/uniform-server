@@ -93,15 +93,6 @@ public class AccountController {
                 String accountId = account.getAccountId();
                 register.setIsRegister(true);
                 register.setToken(TokenUtil.createToken(accountId));
-                Iterator<Student> iterator = studentMapper.selectByExample(
-                        Example.builder(Student.class).where(Sqls.custom().andEqualTo("accountId",accountId))
-                ).iterator();
-                List studentId= new LinkedList();
-                while (iterator.hasNext()){
-                    Long student = iterator.next().getStudentId();
-                    studentId.add(student);
-                }
-                register.setStudentId(studentId);
                 return register;
             }else {
                 //需要新注册
@@ -112,7 +103,6 @@ public class AccountController {
                 accountMapper.insertSelective(newAccount);
                 register.setToken(newAccount.getAccountId());
                 register.setIsRegister(false);
-                register.setHasStudent(false);
                 return register;
             }
         }else {
@@ -123,9 +113,7 @@ public class AccountController {
     @Data
     class isRegister{
         Boolean isRegister;
-        Boolean hasStudent;
         String token;
-        List studentId;
     }
 
     /**

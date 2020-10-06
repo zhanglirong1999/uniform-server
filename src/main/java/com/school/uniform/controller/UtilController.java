@@ -77,7 +77,8 @@ public class UtilController {
         StringBuffer info = new StringBuffer("https://api.weixin.qq.com/wxa/getwxacodeunlimit?");
         Long scene= getCode.getSid();
         String page = getCode.getPage();
-        
+        System.out.println(page+scene);
+
         String accessToken = wxAccessCodeTask.accessCode();
         URL url = null;
         url = new URL(info.append("access_token=").append(accessToken).toString());
@@ -91,7 +92,7 @@ public class UtilController {
         JSONObject paramJson = new JSONObject();
         paramJson.put("scene", scene);
         paramJson.put("width",430);
-        paramJson.put("page",page);
+        paramJson.put("path",page);
 
         printWriter.write(paramJson.toString());
         // flush输出流的缓冲

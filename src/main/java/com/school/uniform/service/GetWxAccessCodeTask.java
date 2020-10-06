@@ -46,6 +46,7 @@ public class GetWxAccessCodeTask {
             String expires_in = jsonObject.getString("expires_in");
             // 写入缓存 我这里设定的 时间是 7180 秒 access_token 失效时间相差了一点
             operations.set("accessToken", accessToken, 7180, TimeUnit.SECONDS);
+//            System.out.println("access_Token"+accessToken);
             return operations.get("accessToken");
         }
 

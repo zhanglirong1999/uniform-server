@@ -1,4 +1,6 @@
-package com.github.wxpay.sdk;
+package com.school.uniform.common.wxpay;
+
+import com.school.uniform.common.wxpay.IWXPayDomain;
 
 import java.io.InputStream;
 

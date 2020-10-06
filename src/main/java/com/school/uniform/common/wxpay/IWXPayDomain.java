@@ -1,4 +1,5 @@
-package com.github.wxpay.sdk;
+package com.school.uniform.common.wxpay;
+
 
 /**
  * 域名管理，实现主备域名自动切换
