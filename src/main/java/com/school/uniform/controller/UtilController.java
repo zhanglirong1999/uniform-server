@@ -5,6 +5,7 @@ import com.school.uniform.common.CONST;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.exception.BizException;
+import com.school.uniform.model.dto.post.GetCode;
 import com.school.uniform.service.GetWxAccessCodeTask;
 import com.school.uniform.service.ProductService;
 import com.school.uniform.service.QCloudFileManager;
@@ -69,20 +70,14 @@ public class UtilController {
 
     @PostMapping("/getCode")
     public Object getAccessToken(
-            @RequestParam Long sid,
-            @RequestParam String flag
-    ) throws Exception {
+            @RequestBody GetCode getCode
+            ) throws Exception {
         String fileName = UUID.randomUUID().toString() + System.currentTimeMillis()+ (".jpg");
         StringBuffer backUrl = new StringBuffer(); // 回调url
         StringBuffer info = new StringBuffer("https://api.weixin.qq.com/wxa/getwxacodeunlimit?");
-        String scene;
-        if(flag.equals("0")) {
-            scene = "schoolId:"+sid;
-        }else if(flag.equals("1")){
-            scene = "sid" + sid;
-        }else {
-            throw new BizException(ConstantUtil.BizExceptionCause.ERROR_STATE);
-        }
+        Long scene= getCode.getSid();
+        String page = getCode.getPage();
+        
         String accessToken = wxAccessCodeTask.accessCode();
         URL url = null;
         url = new URL(info.append("access_token=").append(accessToken).toString());
@@ -95,6 +90,8 @@ public class UtilController {
         PrintWriter printWriter = new PrintWriter(connection.getOutputStream());
         JSONObject paramJson = new JSONObject();
         paramJson.put("scene", scene);
+        paramJson.put("width",430);
+        paramJson.put("page",page);
 
         printWriter.write(paramJson.toString());
         // flush输出流的缓冲

@@ -268,6 +268,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Object purchase(Purchase1 purchaseShop, String accountId) {
+        System.out.println(purchaseShop);
         String type = purchaseShop.getType();   //线上线下
         Long positionId = purchaseShop.getPositionId();
         PurchaseShop[] purchaseShops = purchaseShop.getPurchaseShops();
