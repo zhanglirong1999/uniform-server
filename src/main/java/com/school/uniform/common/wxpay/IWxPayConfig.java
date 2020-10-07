@@ -1,4 +1,4 @@
-package com.school.uniform.common.config;
+package com.school.uniform.common.wxpay;
 
 import com.github.wxpay.sdk.WXPayConfig;
 import com.school.uniform.common.CONST;
@@ -11,10 +11,12 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 @Service
 
-public class IWxPayConfig implements WXPayConfig {
+public class IWxPayConfig extends WXPayConfig {
     private byte[] certData;
+    public IWxPayConfig() throws Exception {
+    }
 
-    @Override
+        @Override
     public String getAppID() {
         return CONST.appId;
     }
