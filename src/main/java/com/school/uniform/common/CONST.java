@@ -18,6 +18,7 @@ public class CONST {
     public static final String mch_id = "";
     public static final String notify_url="http://49.235.109.99/wxpay/callback";
     public static final String key="";
+    public static final String SIGNTYPE="MD5";
     //微信统一下单接口地址
     public static final String pay_url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 
@@ -30,5 +31,19 @@ public class CONST {
     public static final String ManAvatar ="https://uniform-nj-1301042386.cos.ap-nanjing.myqcloud.com/38114208764928.jpg";
     public static final String WomanAvatar ="https://uniform-nj-1301042386.cos.ap-nanjing.myqcloud.com/38114152631296.jpg";
 
+
+    public static final String fail() {
+        return "<xml>\n" +
+                "  <return_code><![CDATA[FAIL]]></return_code>\n" +
+                "  <return_msg><![CDATA[]]></return_msg>\n" +
+                "</xml>";
+    }
+
+    public static final String success() {
+        return "<xml>\n" +
+                "  <return_code><![CDATA[SUCCESS]]></return_code>\n" +
+                "  <return_msg><![CDATA[OK]]></return_msg>\n" +
+                "</xml>";
+    }
 
 }

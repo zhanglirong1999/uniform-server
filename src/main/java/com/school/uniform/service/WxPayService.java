@@ -2,6 +2,10 @@ package com.school.uniform.service;
 
 import org.springframework.validation.annotation.Validated;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Validated
 public interface WxPayService {
 
@@ -11,14 +15,14 @@ public interface WxPayService {
      * @param amount: 实际支付金额
      * @return
      */
-    Object unifiedOrder(String orderNo, double amount,String openId,String ip) throws Exception;
+    Object unifiedOrder(String orderNo, double amount, String openId,  HttpServletRequest request) throws Exception;
 
     /**
      * @Description: 订单支付异步通知
-     * @param notifyStr: 微信异步通知消息字符串
+     * @param : 微信异步通知消息字符串
      * @return
      */
-    String notify(String notifyStr) throws Exception;
+    String callBack(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 //    /**
 //     * @Description: 退款

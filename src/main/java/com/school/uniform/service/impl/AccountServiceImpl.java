@@ -43,7 +43,6 @@ public class AccountServiceImpl implements AccountService {
         }
         account.setAvatar(register.getAvatar());
         account.setName(register.getName());
-        account.setWechat(register.getWechat());
         account.setLastTime(new Date());
         accountMapper.updateByPrimaryKeySelective(account);
     }
@@ -56,7 +55,6 @@ public class AccountServiceImpl implements AccountService {
             throw new BizException(ConstantUtil.BizExceptionCause.NOT_USER);
         }
         Map<String,Object> map = new HashMap<>();
-        map.put("wechat",account.getWechat());
         map.put("name",account.getName());
         map.put("avatar",account.getAvatar());
         return map;

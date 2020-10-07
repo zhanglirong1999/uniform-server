@@ -35,5 +35,7 @@ public class Purchase {
     @Column(name = "schoolId")
     private Long schoolId;
 
+    @Column(name = "nonceStr")
+    private String nonceStr;
 
 }
