@@ -1,10 +1,7 @@
 package com.school.uniform.service.impl;
 
 import com.school.uniform.common.CONST;
-import com.school.uniform.common.config.IWxPayConfig;
-import com.school.uniform.common.wxpay.WXPay;
-import com.school.uniform.common.wxpay.WXPayConstants;
-import com.school.uniform.common.wxpay.WXPayUtil;
+import com.school.uniform.common.wxpay.*;
 import com.school.uniform.exception.BizException;
 import com.school.uniform.model.dao.mapper.PurchaseMapper;
 import com.school.uniform.service.WxPayService;
@@ -17,14 +14,11 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
 @Service
 public class WxPayServiceImpl implements WxPayService {
-    @Autowired
-    private IWxPayConfig iWxPayConfig;
 
     @Autowired
     private PurchaseMapper purchaseMapper;
@@ -41,9 +35,10 @@ public class WxPayServiceImpl implements WxPayService {
         //获取本机的ip地址
         String spbill_create_ip = IpUtils.getIpAddr(request);
         try {
+            IWxPayConfig iWxPayConfig = new IWxPayConfig();
             WXPay wxpay = new WXPay(iWxPayConfig);
-            requestMap.put("body", "购买校服");                                     // 商品描述
-            requestMap.put("appId", CONST.appId);
+            requestMap.put("body", body);                                     // 商品描述
+            requestMap.put("appid", CONST.appId);
             requestMap.put("mch_id", CONST.mch_id);
             requestMap.put("out_trade_no", orderNo);                          // 商户订单号
             requestMap.put("total_fee", money);   // 总金额
@@ -51,6 +46,7 @@ public class WxPayServiceImpl implements WxPayService {
             requestMap.put("trade_type", "JSAPI");                              // App支付类型
             requestMap.put("notify_url", CONST.notify_url);   // 接收微信支付异步通知回调地址
             requestMap.put("openid", openId);
+            System.out.println(requestMap);
             Map<String, String> resultMap = wxpay.unifiedOrder(requestMap);
             System.out.println(resultMap);
             //MD5运算生成签名，这里是第一次签名，用于调用统一下单接口
@@ -118,9 +114,7 @@ public class WxPayServiceImpl implements WxPayService {
                     //业务逻辑代码
                 }
             } catch (Exception e) {
-
                 throw new BizException(ConstantUtil.BizExceptionCause.ERROR_PAY);
-
             }
 
         }catch (Exception e) {

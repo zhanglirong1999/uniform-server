@@ -1,8 +1,4 @@
 package com.school.uniform.common.wxpay;
-
-
-import com.school.uniform.common.config.IWxPayConfig;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +46,8 @@ public class WXPay {
         this.wxPayRequest = new WXPayRequest(config);
     }
 
-    public WXPay(IWxPayConfig iWxPayConfig) {
+    public WXPay(IWxPayConfig wxPayConfig) {
+
     }
 
     private void checkWXPayConfig() throws Exception {

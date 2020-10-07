@@ -1,13 +1,12 @@
 package com.school.uniform.common.wxpay;
 
+import com.school.uniform.common.CONST;
 import com.school.uniform.common.wxpay.IWXPayDomain;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 public abstract class WXPayConfig {
-
-
-
     /**
      * 获取 App ID
      *
@@ -103,3 +102,4 @@ public abstract class WXPayConfig {
     }
 
 }
+

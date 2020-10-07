@@ -81,8 +81,8 @@ public class StudentServiceImpl implements StudentService {
         Map<String,Object> map = new HashMap<>();
         map.put("name",name);
         map.put("gender",gender);
-        map.put("schoolNum",schoolnum);
-        map.put("school",school);
+        map.put("schoolId",schoolnum);
+        map.put("schoolName",school);
         map.put("class",class1);
         map.put("height",height);
         map.put("chest",chest);

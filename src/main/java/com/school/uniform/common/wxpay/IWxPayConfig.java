@@ -11,7 +11,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 @Service
 
-public class IWxPayConfig extends WXPayConfig {
+public class IWxPayConfig implements WXPayConfig {
     private byte[] certData;
     public IWxPayConfig() throws Exception {
     }
