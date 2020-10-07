@@ -1,5 +1,6 @@
 package com.school.uniform.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.school.uniform.common.CONST;
 import com.school.uniform.common.annotation.TokenRequired;
@@ -16,7 +17,9 @@ import com.school.uniform.service.AccountService;
 import com.school.uniform.service.VerifyService;
 import com.school.uniform.util.ConstantUtil;
 import com.school.uniform.util.TokenUtil;
+import com.school.uniform.util.WeChatUtil;
 import lombok.Data;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -82,6 +85,14 @@ public class AccountController {
                 "&grant_type=authorization_code";
         String respronse = restTemplate.getForObject(wxApiUrl, String.class);
         Map res = new Gson().fromJson(respronse, Map.class);
+        System.out.println(res);
+//        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + CONST.appId + "&secret=" + CONST.appSecret + "&js_code=" + js_code + "&grant_type=authorization_code";
+//        String str = WeChatUtil.httpRequest(url, "GET", null);
+//        if (StringUtils.isEmpty(str)) {
+//            return null;
+//        } else {
+//            return JSONObject.parseObject(str);
+//        }
         String openid = (String) res.get("openid");
         if (openid != null && !openid.equals("")) {
             isRegister register = new isRegister();
