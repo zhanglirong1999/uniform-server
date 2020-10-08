@@ -1,5 +1,6 @@
 package com.school.uniform.service.impl;
 
+import com.school.uniform.common.CONST;
 import com.school.uniform.exception.BizException;
 import com.school.uniform.model.dao.entity.Account;
 import com.school.uniform.model.dao.entity.School;
@@ -36,8 +37,6 @@ public class StudentServiceImpl implements StudentService {
         student.setStudentId(studentId);
         if(studentInfo.getChest()!=null){
         student.setChest(studentInfo.getChest());}
-        if(studentInfo.getClass1()!=null){
-        student.setClass1(studentInfo.getClass1());}
 
         student.setGender(studentInfo.getGender());
         student.setName(studentInfo.getName());
@@ -72,23 +71,29 @@ public class StudentServiceImpl implements StudentService {
         );
         System.out.println(schoolClass);
         String school = schoolClass.getName();  //schoolId
-        String class1=student.getClass1();
         String height=student.getHeight();
         String weight=student.getWeight();
         String chest=student.getChest();
         String waistline=student.getWaistline();
         String hipline=student.getHipline();
         Map<String,Object> map = new HashMap<>();
+        map.put("studentId",studentId);
         map.put("name",name);
         map.put("gender",gender);
-        map.put("schoolId",schoolnum);
-        map.put("schoolName",school);
-        map.put("class",class1);
+        map.put("schoolNum",schoolnum);
+        map.put("studentName",school);
         map.put("height",height);
         map.put("chest",chest);
         map.put("weight",weight);
         map.put("waistline",waistline);
         map.put("hipline",hipline);
+        if(student.getGender()==0){
+            map.put("avatar", CONST.ManAvatar);
+        }else if (student.getGender()==1){
+            map.put("avatar",CONST.WomanAvatar);
+        }else {
+            throw new BizException(ConstantUtil.BizExceptionCause.ERROR_GENDER);
+        }
         return map;
     }
 
@@ -113,13 +118,11 @@ public class StudentServiceImpl implements StudentService {
         }
         String schoolNum=putStudent.getSchoolNum();
         Long schoolId= redisUtil.getSchoolId(accountId);
-        String class1=putStudent.getClass1();
         String height=putStudent.getHeight();
         String weight=putStudent.getWeight();
         String chest=putStudent.getChest();
         String waistline=putStudent.getWaistline();
         String hipline=putStudent.getHipline();
-        System.out.println(schoolNum+":"+class1);
         if(name!=null){
             student.setName(name);
         }
@@ -131,9 +134,6 @@ public class StudentServiceImpl implements StudentService {
         }
         if(schoolId!=null){
             student.setSchoolId(schoolId);
-        }
-        if(class1!=null){
-            student.setClass1(class1);
         }
         if(height!=null){
             student.setHeight(height);

@@ -14,8 +14,6 @@ public class StudentInfo {
 
     private String schoolNum;
 
-    private String class1;
-
     private String height;
 
     private String weight;
