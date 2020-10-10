@@ -12,7 +12,9 @@ public class CORSFilterConfigurer {
     private CorsConfiguration corsConfiguration() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("*");
-        corsConfiguration.addAllowedHeader("content-type,x-requested-with,Authorization,x-ui-request,lang,x-Wx-token");
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.addExposedHeader("*");
+//        corsConfiguration.addAllowedHeader("content-type,x-requested-with,Authorization,x-ui-request,lang,x-Wx-token");
         corsConfiguration.addAllowedMethod("GET, HEAD, PUT, POST, DELETE, PATCH");
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setMaxAge(3600L);
