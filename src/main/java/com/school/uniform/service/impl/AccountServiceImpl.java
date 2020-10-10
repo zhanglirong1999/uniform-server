@@ -74,7 +74,7 @@ public class AccountServiceImpl implements AccountService {
             System.out.println(student);
             Map<String,Object> map = new HashMap<>();
             map.put("studentId",student.getStudentId());
-            map.put("name",student.getName());
+            map.put("name",student.getName());   
             map.put("gender",student.getGender());
             if(student.getGender()==0){
                 map.put("avatar", CONST.ManAvatar);
