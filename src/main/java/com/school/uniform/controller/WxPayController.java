@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:18080", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @RequestMapping("/wxpay")
 @WebResponse
 public class WxPayController {

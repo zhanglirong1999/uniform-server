@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:18080", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @RequestMapping("/position")
 @WebResponse
 public class LocationController {

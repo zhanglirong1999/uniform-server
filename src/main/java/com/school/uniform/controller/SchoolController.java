@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:18080", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @RequestMapping("/school")
 @WebResponse
 public class SchoolController {

@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:18080", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @WebResponse
 public class UtilController {
     @Autowired

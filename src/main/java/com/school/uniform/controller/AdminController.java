@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:18080", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @RequestMapping("/admin")
 @WebResponse
 public class AdminController {
