@@ -32,7 +32,7 @@ import java.util.*;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:18080", maxAge = 3600)
 @RequestMapping("/account")
 @WebResponse
 public class AccountController {
