@@ -31,7 +31,7 @@ public class WxPayController {
             @RequestBody Payment payment) throws Exception {
         String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
         String openId = accountMapper.getOpenId(accountId);
-        return wxPayService.unifiedOrder(String.valueOf(payment.getOrderId()) ,payment.getAmount(),openId,request);
+        return wxPayService.unifiedOrder(String.valueOf(payment.getOrderId()) ,payment.getPrice(),openId,request);
     }
 
     @TokenRequired

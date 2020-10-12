@@ -1,10 +1,13 @@
 package com.school.uniform.common.wxpay;
+import com.school.uniform.common.CONST;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class WXPay {
 
     private WXPayConfig config;
+    private IWxPayConfig iWxPayConfig;
     private WXPayConstants.SignType signType;
     private boolean autoReport;
     private boolean useSandbox;
@@ -85,8 +88,8 @@ public class WXPay {
      * @throws Exception
      */
     public Map<String, String> fillRequestData(Map<String, String> reqData) throws Exception {
-        reqData.put("appid", config.getAppID());
-        reqData.put("mch_id", config.getMchID());
+        reqData.put("appid", CONST.appId);
+        reqData.put("mch_id", CONST.mch_id);
         reqData.put("nonce_str", WXPayUtil.generateNonceStr());
         if (WXPayConstants.SignType.MD5.equals(this.signType)) {
             reqData.put("sign_type", WXPayConstants.MD5);
@@ -94,7 +97,8 @@ public class WXPay {
         else if (WXPayConstants.SignType.HMACSHA256.equals(this.signType)) {
             reqData.put("sign_type", WXPayConstants.HMACSHA256);
         }
-        reqData.put("sign", WXPayUtil.generateSignature(reqData, config.getKey(), this.signType));
+        this.signType = WXPayConstants.SignType.MD5;
+        reqData.put("sign", WXPayUtil.generateSignature(reqData, CONST.key, this.signType));
         return reqData;
     }
 
@@ -338,7 +342,14 @@ public class WXPay {
      * @throws Exception
      */
     public Map<String, String> unifiedOrder(Map<String, String> reqData) throws Exception {
-        return this.unifiedOrder(reqData, config.getHttpConnectTimeoutMs(), this.config.getHttpReadTimeoutMs());
+        System.out.println(222);
+        System.out.println(reqData);
+//        test(reqData,1, 1);
+        return this.unifiedOrder(reqData, 8000, 10000);
+    }
+
+    public void test(Map<String, String> reqData,  int connectTimeoutMs, int readTimeoutMs){
+        System.out.println("成功了");
     }
 
 
@@ -353,6 +364,7 @@ public class WXPay {
      */
     public Map<String, String> unifiedOrder(Map<String, String> reqData,  int connectTimeoutMs, int readTimeoutMs) throws Exception {
         String url;
+        System.out.println("1111"+connectTimeoutMs+readTimeoutMs);
         if (this.useSandbox) {
             url = WXPayConstants.SANDBOX_UNIFIEDORDER_URL_SUFFIX;
         }
@@ -362,7 +374,9 @@ public class WXPay {
         if(this.notifyUrl != null) {
             reqData.put("notify_url", this.notifyUrl);
         }
+        //这里出错了
         String respXml = this.requestWithoutCert(url, this.fillRequestData(reqData), connectTimeoutMs, readTimeoutMs);
+        System.out.println("测试");
         return this.processResponseXml(respXml);
     }
 

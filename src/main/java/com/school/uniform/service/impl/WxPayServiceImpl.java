@@ -47,8 +47,8 @@ public class WxPayServiceImpl implements WxPayService {
             requestMap.put("notify_url", CONST.notify_url);   // 接收微信支付异步通知回调地址
             requestMap.put("openid", openId);
             System.out.println(requestMap);
-            Map<String, String> resultMap = wxpay.unifiedOrder(requestMap);
-            System.out.println(resultMap);
+//            Map<String, String> resultMap = wxpay.unifiedOrder(requestMap);
+//            System.out.println(resultMap);
             //MD5运算生成签名，这里是第一次签名，用于调用统一下单接口
 //            String sign = WXPayUtil.generateSignature(resultMap, CONST.key);
 //
@@ -81,7 +81,7 @@ public class WxPayServiceImpl implements WxPayService {
 //                    "</xml>";
 
             //可以直接生成xml
-            String xml = WXPayUtil.generateSignedXml(resultMap,CONST.key, WXPayConstants.SignType.MD5);
+            String xml = WXPayUtil.generateSignedXml(requestMap,CONST.key, WXPayConstants.SignType.MD5);
 
             String result = "";
 
@@ -116,8 +116,8 @@ public class WxPayServiceImpl implements WxPayService {
             } catch (Exception e) {
                 throw new BizException(ConstantUtil.BizExceptionCause.ERROR_PAY);
             }
-
         }catch (Exception e) {
+            System.out.println("e:"+e);
 
             throw new BizException(ConstantUtil.BizExceptionCause.ERROR_PAY);
 
@@ -128,6 +128,7 @@ public class WxPayServiceImpl implements WxPayService {
     @Override
     public String callBack(HttpServletRequest request, HttpServletResponse response) throws Exception {
         InputStream inputStream =  request.getInputStream();
+        System.out.println("调用了回调");
         //获取请求输入流
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
