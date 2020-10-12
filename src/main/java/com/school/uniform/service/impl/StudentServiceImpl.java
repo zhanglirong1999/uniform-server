@@ -81,7 +81,7 @@ public class StudentServiceImpl implements StudentService {
         map.put("name",name);
         map.put("gender",gender);
         map.put("schoolNum",schoolnum);
-        map.put("studentName",school);
+        map.put("schoolName",school);
         map.put("height",height);
         map.put("chest",chest);
         map.put("weight",weight);
