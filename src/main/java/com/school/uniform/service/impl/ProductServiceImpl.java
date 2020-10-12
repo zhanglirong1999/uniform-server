@@ -250,6 +250,8 @@ public class ProductServiceImpl implements ProductService {
         map.put("img",product.getImg());
         map.put("tag",product.getType());
         map.put("sex",product.getSex());
+        map.put("schoolId",product.getSchoolId());
+        map.put("schoolName",schoolMapper.getSchoolName(product.getSchoolId()));
         Iterator<Price> iterator = priceMapper.selectByExample(
                 Example.builder(Price.class).where(Sqls.custom().andEqualTo("productId",productId))
                         .build()
