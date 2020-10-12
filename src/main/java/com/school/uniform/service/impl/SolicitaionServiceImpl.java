@@ -213,6 +213,7 @@ public class SolicitaionServiceImpl implements SolicitaionService {
             maping.put("freight",product.getFreight());
             maping.put("description",product.getDescription());
             maping.put("count",soliciteMap.getCount());
+            maping.put("sex",product.getSex());
             list.add(maping);
         }
         maps.put("product",list);
