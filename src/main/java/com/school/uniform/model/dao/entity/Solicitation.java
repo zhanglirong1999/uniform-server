@@ -18,5 +18,7 @@ public class Solicitation {
 
     private String description;
 
+    private String type;
+
 
 }

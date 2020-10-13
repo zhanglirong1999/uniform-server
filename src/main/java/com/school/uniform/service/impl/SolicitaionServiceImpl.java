@@ -42,6 +42,7 @@ public class SolicitaionServiceImpl implements SolicitaionService {
         Long[] productIds = solicit.getProductId();
         Long sid = ConstantUtil.generateId();
         Integer[] count = solicit.getCount();
+        String type = solicit.getType();
         if(count==null){
             throw new BizException(ConstantUtil.BizExceptionCause.LOSS_COUNT);
         }
@@ -49,6 +50,7 @@ public class SolicitaionServiceImpl implements SolicitaionService {
         solicitation.setDescription(description);
         solicitation.setSchoolId(schoolId);
         solicitation.setSid(sid);
+        solicitation.setType(type);
         solicitationMapper.insert(solicitation);
         if(productIds.length!=count.length){
             throw new BizException(ConstantUtil.BizExceptionCause.ERROR_NUM);
@@ -62,6 +64,7 @@ public class SolicitaionServiceImpl implements SolicitaionService {
             soliciteMap.setCount(counting);
             solicitemapMapper.insert(soliciteMap);
         }
+
     }
 
     @Override
@@ -100,6 +103,7 @@ public class SolicitaionServiceImpl implements SolicitaionService {
         Long[] productIds= solicit.getProductId();
         Integer[] count = solicit.getCount();
         Long schoolId = solicit.getSchoolId();
+        String type = solicit.getType();
         if (!des.equals("")||schoolId!=null){
             Solicitation solicitation = new Solicitation();
             solicitation.setSid(sid);
@@ -108,6 +112,9 @@ public class SolicitaionServiceImpl implements SolicitaionService {
             }
             if ((schoolId!=null)){
                 solicitation.setSchoolId(schoolId);
+            }
+            if(!type.equals("")){
+                solicitation.setType(type);
             }
             solicitationMapper.updateByExampleSelective(
                     solicitation,Example.builder(Solicitation.class).where(Sqls.custom().andEqualTo("sid",sid))
@@ -148,6 +155,8 @@ public class SolicitaionServiceImpl implements SolicitaionService {
             map.put("sid",sid);
             map.put("school",school);
             map.put("description",description);
+            map.put("schoolId",solicitation.getSchoolId());
+            map.put("type",solicitation.getType());
             map.put("product",getProduct(sid));
             list.add(map);
         }

@@ -12,4 +12,5 @@ public class AddSolicite {
     String description;
     Long[] productId;
     Integer[] count;
+    String type;
 }

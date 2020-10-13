@@ -5,6 +5,7 @@ import com.school.uniform.common.CONST;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.exception.BizException;
+import com.school.uniform.model.dao.mapper.SolicitationMapper;
 import com.school.uniform.model.dto.post.GetCode;
 import com.school.uniform.service.GetWxAccessCodeTask;
 import com.school.uniform.service.ProductService;
@@ -46,6 +47,9 @@ public class UtilController {
     @Autowired
     private SchoolService schoolService;
 
+    @Autowired
+    private SolicitationMapper solicitationMapper;
+
     @TokenRequired
     @GetMapping("/scene")
     public Object getSchool(
@@ -75,8 +79,9 @@ public class UtilController {
         String fileName = UUID.randomUUID().toString() + System.currentTimeMillis()+ (".jpg");
         StringBuffer backUrl = new StringBuffer(); // 回调url
         StringBuffer info = new StringBuffer("https://api.weixin.qq.com/wxa/getwxacodeunlimit?");
-        Long scene= getCode.getSid();
-        String page = getCode.getPage();
+        String online = solicitationMapper.getOnlineType(getCode.getSid());
+        String scene="sid="+getCode.getSid()+"&flag="+getCode.getFlag()+"&online="+online;
+        String page ="/pages/index/index";
         System.out.println(page+scene);
 
         String accessToken = wxAccessCodeTask.accessCode();

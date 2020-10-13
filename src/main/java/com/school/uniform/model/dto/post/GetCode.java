@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetCode {
-    String page;
+    String flag;
     Long sid;
 }

@@ -9,4 +9,7 @@ import tk.mybatis.mapper.common.Mapper;
 public interface SolicitationMapper extends Mapper<Solicitation> {
     @Select("SELECT schoolId from solicitation where sid =${sid}")
     Long getSchoolId(Long sid);
+
+    @Select("SELECT type from solicitation where sid =${sid}")
+    String getOnlineType(Long sid);
 }
