@@ -67,7 +67,7 @@ public class StudentController {
     @TokenRequired
     @DeleteMapping("/delete")
     public Object deleteStudent(
-            @RequestParam Long studentId
+            @RequestParam(value = "studentId", required = true) Long studentId
     ){
         String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
         studentService.deleteStudent(studentId,accountId);
