@@ -506,15 +506,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public String getFileUrl(Long productId) {
+        if(fileMapper.selectCountByExample(
+                Example.builder(File.class).where(Sqls.custom().andEqualTo("productId",productId))
+                        .build()
+        )==0){
+            return "暂无质检文件";
+        }
         String fileUrl =fileMapper.selectOneByExample(
                 Example.builder(File.class).where(Sqls.custom().andEqualTo("productId",productId))
                         .build()
         ).getUrl();
-        if(fileUrl==null){
-            return "该商品暂无质检文件";
-        }else {
-            return fileUrl;
-        }
+        return fileUrl;
+
     }
 
     @Override
