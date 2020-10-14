@@ -65,7 +65,7 @@ public class StudentController {
     }
 
     @TokenRequired
-    @DeleteMapping()
+    @DeleteMapping("/delete")
     public Object deleteStudent(
             @RequestParam Long studentId
     ){
