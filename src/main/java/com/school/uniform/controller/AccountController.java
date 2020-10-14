@@ -16,6 +16,7 @@ import com.school.uniform.model.dto.post.Register;
 import com.school.uniform.service.AccountService;
 import com.school.uniform.service.VerifyService;
 import com.school.uniform.util.ConstantUtil;
+import com.school.uniform.util.RedisUtil;
 import com.school.uniform.util.TokenUtil;
 import com.school.uniform.util.WeChatUtil;
 import lombok.Data;
@@ -44,6 +45,9 @@ public class AccountController {
 
     @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
 
     String access_token = "";
@@ -175,6 +179,21 @@ public class AccountController {
     ){
         String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
         return accountService.getStudentList(accountId);
+    }
+
+    /**
+     * 选择指定学生
+     * @param studentId
+     * @return
+     */
+    @TokenRequired
+    @PostMapping("/choose")
+    public Object chooseStudent(
+            @RequestParam Long studentId
+    ){
+        String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
+        redisUtil.setStudentId(studentId,accountId);
+        return "选择成功";
     }
 
 

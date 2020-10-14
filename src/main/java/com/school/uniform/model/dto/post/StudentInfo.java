@@ -23,4 +23,6 @@ public class StudentInfo {
     private String waistline;
 
     private String hipline;
+
+    private String class1;
 }

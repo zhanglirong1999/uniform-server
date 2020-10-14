@@ -35,6 +35,7 @@ public class StudentServiceImpl implements StudentService {
         Long studentId = ConstantUtil.generateId();
         student.setAccountId(accountId);
         student.setStudentId(studentId);
+        String class1 = studentInfo.getClass1();
         if(studentInfo.getChest()!=null){
         student.setChest(studentInfo.getChest());}
 
@@ -51,6 +52,9 @@ public class StudentServiceImpl implements StudentService {
         student.setWeight(studentInfo.getWeight());}
         if(studentInfo.getWaistline()!=null){
         student.setWaistline(studentInfo.getWaistline());}
+        if(class1!=null){
+            student.setClass1(class1);
+        }
 
         Long schoolId = redisUtil.getSchoolId(accountId);  //schoolId
         student.setSchoolId(schoolId);
@@ -123,6 +127,7 @@ public class StudentServiceImpl implements StudentService {
         String chest=putStudent.getChest();
         String waistline=putStudent.getWaistline();
         String hipline=putStudent.getHipline();
+        String class1=putStudent.getClass1();
         if(name!=null){
             student.setName(name);
         }
@@ -149,6 +154,9 @@ public class StudentServiceImpl implements StudentService {
         }
         if(hipline!=null){
             student.setHipline(hipline);
+        }
+        if(class1!=null){
+            student.setClass1(class1);
         }
         studentMapper.updateByPrimaryKeySelective(student);
     }

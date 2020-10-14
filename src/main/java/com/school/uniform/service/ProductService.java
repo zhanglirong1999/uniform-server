@@ -18,7 +18,7 @@ public interface ProductService {
     Object productDetail(Long productId);
     Object purchase(Purchase1 purchaseShop,String accountId);
     Object getCartList(String accountId);
-    Object getPurchaseList(String accountId);
+    Object getPurchaseList(String accountId,String type);
     Object searchProduct(String index);
     Object searchByTagAndSchool(String[] school,String[] tag);
     void sendProduct(Send send);

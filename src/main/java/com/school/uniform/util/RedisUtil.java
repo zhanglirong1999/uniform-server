@@ -36,4 +36,12 @@ public class RedisUtil {
         return (Long) redisTemplate.opsForHash().get(accountId,CONST.SOLICIT_ID);
     }
 
+    public void setStudentId(Long studentId,String accountId){
+        redisTemplate.opsForHash().put(accountId, CONST.STUDENT_ID,studentId);
+    }
+
+    public Long getStudentId(String accountId){
+        return (Long) redisTemplate.opsForHash().get(accountId,CONST.SCHOOL_ID);
+    }
+
 }

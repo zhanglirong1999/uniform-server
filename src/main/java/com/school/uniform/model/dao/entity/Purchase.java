@@ -26,8 +26,8 @@ public class Purchase {
     private Date buyTime;
 
     private String form;
-    @Column(name = "positionId")
 
+    @Column(name = "positionId")
     private Long positionId;
 
     private String total;
@@ -37,5 +37,8 @@ public class Purchase {
 
     @Column(name = "nonceStr")
     private String nonceStr;
+
+    @Column(name = "studentId")
+    private Long studentId;
 
 }

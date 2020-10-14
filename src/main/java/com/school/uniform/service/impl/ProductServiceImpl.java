@@ -62,6 +62,8 @@ public class ProductServiceImpl implements ProductService {
     private RedisUtil redisUtil;
     @Autowired
     private LocationMapper locationMapper;
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Override
     public Object getProductList() {
@@ -273,6 +275,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Object purchase(Purchase1 purchaseShop, String accountId) {
+        Long studentId = redisUtil.getStudentId(accountId);
         System.out.println(purchaseShop);
         String type = purchaseShop.getType();   //线上线下
         Long positionId = purchaseShop.getPositionId();
@@ -339,6 +342,7 @@ public class ProductServiceImpl implements ProductService {
         purchase.setForm(form);
         purchase.setTotal(String.valueOf(totalPrice+freight));
         purchase.setSchoolId(schoolId);
+        purchase.setStudentId(studentId);
         purchaseMapper.insert(purchase);
         Map<String,Object> map= new HashMap<>();
         map.put("orderId",orderId);
@@ -389,10 +393,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Object getPurchaseList(String accountId) {
+    public Object getPurchaseList(String accountId,String type) {
         Iterator<Purchase> iterator = purchaseMapper.selectByExample(
                 Example.builder(Purchase.class).where(Sqls.custom().andEqualTo("accountId",accountId)
-                        .andEqualTo("state","1").orEqualTo("state","2"))
+                        .andEqualTo("state",type))
                         .build()
         ).iterator();
         LinkedList list = new LinkedList();
@@ -535,6 +539,9 @@ public class ProductServiceImpl implements ProductService {
             Long positionId = purchase.getPositionId();
             String total = purchase.getTotal();
             Long schoolID = purchase.getSchoolId();
+            Long studentId = purchase.getStudentId();
+            String class1 = studentMapper.getStudentClass(studentId);
+            String name = studentMapper.getStudentName(studentId);
             map.put("orderId",orderId);
             map.put("state",stating);
             map.put("number",number);
@@ -547,6 +554,8 @@ public class ProductServiceImpl implements ProductService {
             map.put("position",location.getPosition());
             map.put("phone",location.getPhone());
             map.put("name",location.getName());
+            map.put("class1",class1);
+            map.put("studentName",name);
             Iterator<PurchaseMap> iteratorMap = purchaseMapMapper.selectByExample(
                     Example.builder(PurchaseMap.class).where(Sqls.custom().andEqualTo("purId",orderId))
                             .build()

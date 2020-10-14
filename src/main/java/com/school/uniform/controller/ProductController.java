@@ -196,9 +196,11 @@ public class ProductController {
      */
     @TokenRequired
     @GetMapping("/purchase")
-    public Object getPurchaseList(){
+    public Object getPurchaseList(
+            @RequestParam String type
+    ){
         String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
-        return productService.getPurchaseList(accountId);
+        return productService.getPurchaseList(accountId,type);
     }
 
     /**

@@ -29,6 +29,8 @@ public class CONST {
     public static final String ACL_ACCOUNTID = "accountId";
     public static final String SCHOOL_ID ="schoolId";
     public static final String SOLICIT_ID="sid";
+    public static final String STUDENT_ID="studentId";
+
 
     public static final String ManAvatar ="https://uniform-nj-1301042386.cos.ap-nanjing.myqcloud.com/38114208764928.jpg";
     public static final String WomanAvatar ="https://uniform-nj-1301042386.cos.ap-nanjing.myqcloud.com/38114152631296.jpg";
