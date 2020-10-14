@@ -259,9 +259,11 @@ public class ProductController {
     public Object getSearch(
             @RequestParam Long schoolId,
             @RequestParam String state,
-            @RequestParam String type
-    ){
-        return productService.getSearchBy(schoolId, state, type);
+            @RequestParam String type,
+            @RequestParam Integer pageSize,
+            @RequestParam Integer pageIndex
+            ){
+        return productService.getSearchBy(schoolId, state, type,pageSize,pageIndex);
     }
 
 

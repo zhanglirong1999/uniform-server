@@ -3,9 +3,12 @@ package com.school.uniform.service.impl;
 
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.google.gson.JsonArray;
 import com.school.uniform.model.dao.entity.*;
 import com.school.uniform.model.dao.mapper.*;
+import com.school.uniform.model.dto.PageResult;
 import com.school.uniform.model.dto.post.*;
 import com.school.uniform.service.QCloudFileManager;
 import com.school.uniform.util.RedisUtil;
@@ -506,7 +509,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Object getSearchBy(Long schoolId, String state, String type) {
+    public Object getSearchBy(Long schoolId, String state, String type
+            ,Integer pageSize,Integer pageIndex) {
         Example example = new Example(Purchase.class);
         if(schoolId!=null) {
             example.createCriteria().andEqualTo("schoolId",schoolId);
@@ -516,6 +520,7 @@ public class ProductServiceImpl implements ProductService {
         }
         example.createCriteria().andEqualTo("form",type);
         List list = new LinkedList();
+        PageHelper.startPage(pageIndex, pageSize);   //分页
         Iterator<Purchase> iterator = purchaseMapper.selectByExample(example).iterator();
         while (iterator.hasNext()){
             Map<String,Object> map= new HashMap<>();
@@ -562,9 +567,8 @@ public class ProductServiceImpl implements ProductService {
             list.add(map);
 
         }
-        return list;
-
-
+//        return new PageResult<>(((Page) list).getTotal(), list);
+          return list;
     }
 
     @Override

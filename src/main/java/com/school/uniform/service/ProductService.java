@@ -25,7 +25,7 @@ public interface ProductService {
     void addSolicit(AddSolicite addSolicite);
     String uploadFile(MultipartFile file);
     String getFileUrl(Long productId);
-    Object getSearchBy(Long schoolId ,String state,String type);
+    Object getSearchBy(Long schoolId ,String state,String type,Integer pageSize,Integer pageIndex);
     Object hasBuy(Long orderId);
     void postProduct(ProductPost productPost);
 }
