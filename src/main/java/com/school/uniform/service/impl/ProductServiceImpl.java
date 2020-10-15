@@ -530,6 +530,7 @@ public class ProductServiceImpl implements ProductService {
                 example.createCriteria().andEqualTo("schoolId", schoolId).
                         andEqualTo("form", type);
             }else {
+                System.out.println("?");
                 example.createCriteria().
                         andEqualTo("form", type);
             }
@@ -572,6 +573,7 @@ public class ProductServiceImpl implements ProductService {
             map.put("form",form);
             map.put("price",total);
             map.put("school",schoolMapper.getSchoolName(schoolID));
+            System.out.println(purchase);
             Location location = locationMapper.selectByPrimaryKey(positionId);
             map.put("position",location.getPosition());
             map.put("phone",location.getPhone());
