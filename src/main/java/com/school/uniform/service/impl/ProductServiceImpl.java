@@ -524,13 +524,21 @@ public class ProductServiceImpl implements ProductService {
     public Object getSearchBy(Long schoolId, String state, String type
             ,Integer pageSize,Integer pageIndex) {
         Example example = new Example(Purchase.class);
-        if(schoolId!=null) {
-            example.createCriteria().andEqualTo("schoolId",schoolId);
+        if(state.equals("0")){
+            if (schoolId != null){
+                example.createCriteria().andEqualTo("schoolId", schoolId).
+                        andEqualTo("form", type);
+            }
+        }else {
+            if (schoolId != null) {
+                example.createCriteria().andEqualTo("schoolId", schoolId).
+                        andEqualTo("form", type)
+                        .andEqualTo("state", state);
+            }  else {
+                example.createCriteria().andEqualTo("state", state)
+                        .andEqualTo("form", type);
+            }
         }
-        if(state.equals("1")||state.equals("2")){
-            example.createCriteria().andEqualTo("state",state);
-        }
-        example.createCriteria().andEqualTo("form",type);
         List list = new LinkedList();
         PageHelper.startPage(pageIndex, pageSize);   //分页
         Iterator<Purchase> iterator = purchaseMapper.selectByExample(example).iterator();
