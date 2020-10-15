@@ -58,7 +58,7 @@ public class LocationController {
      * @return
      */
     @TokenRequired
-    @DeleteMapping()
+    @PostMapping()
     public Object deletePosition(
             @RequestParam Long positionId
     ){
