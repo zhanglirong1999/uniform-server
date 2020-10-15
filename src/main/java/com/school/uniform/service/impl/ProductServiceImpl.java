@@ -526,15 +526,21 @@ public class ProductServiceImpl implements ProductService {
         Example example = new Example(Purchase.class);
         if(state.equals("0")){
             if (schoolId != null){
+                System.out.println("1");
                 example.createCriteria().andEqualTo("schoolId", schoolId).
+                        andEqualTo("form", type);
+            }else {
+                example.createCriteria().
                         andEqualTo("form", type);
             }
         }else {
             if (schoolId != null) {
+                System.out.println("2");
                 example.createCriteria().andEqualTo("schoolId", schoolId).
                         andEqualTo("form", type)
                         .andEqualTo("state", state);
             }  else {
+                System.out.println("3");
                 example.createCriteria().andEqualTo("state", state)
                         .andEqualTo("form", type);
             }
