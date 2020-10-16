@@ -319,7 +319,7 @@ public class ProductServiceImpl implements ProductService {
             if(Double.valueOf(productMapper.getFreight(productId))>freight) {    //运费
                 freight = Double.valueOf(productMapper.getFreight(productId));
             }
-            totalPrice += Double.valueOf(price);
+            totalPrice += Double.valueOf(price)*count;
             purchaseMapMapper.insert(purchaseMap);
 
             if(purchaseShop.getState().equals("1")) {
