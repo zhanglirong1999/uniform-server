@@ -9,8 +9,8 @@ import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 @Repository
 public interface ProductMapper extends Mapper<Product> {
-    @Select("SELECT id from price where productId=${productId} AND size='${size}' AND sex=${sex}")
-    Long getPriceId(Long productId,String size,Integer sex);
+    @Select("SELECT id from price where productId=${productId} AND size='${size}'")
+    Long getPriceId(Long productId,String size);
 
     @Select("SELECT * FROM product where deleted=0 AND productName LIKE '%${index}%'")
     List<Product> search(String index);

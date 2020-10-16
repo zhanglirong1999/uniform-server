@@ -158,7 +158,6 @@ public class ProductController {
     @PostMapping("/purchase")
     public Object purchase(
             @RequestBody Purchase1 purchaseShop
-
     ){
         String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
         return  productService.purchase(purchaseShop,accountId);
