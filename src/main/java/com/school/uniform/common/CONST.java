@@ -19,7 +19,7 @@ public class CONST {
     public static final String notify_url="http://www.alumnisystem.cn/wxpay/callback";
 //public static final String notify_url="http://localhost:18080/wxpay/callback";
 
-    public static final String key="";
+    public static final String key="Huangxizhi3201141989091400190815";
     public static final String SIGNTYPE="MD5";
     //微信统一下单接口地址
     public static final String pay_url = "https://api.mch.weixin.qq.com/pay/unifiedorder";

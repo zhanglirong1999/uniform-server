@@ -82,7 +82,7 @@ public class UtilController {
         String online = solicitationMapper.getOnlineType(getCode.getSid());
         String scene="s="+getCode.getSid()+"&f="+getCode.getFlag()+"&o="+online;
 //        String scene = getCode.getSid().toString();
-        String page ="/pages/index/index";
+        String page ="pages/index/index";
         System.out.println(page+scene);
 
         String accessToken = wxAccessCodeTask.accessCode();
