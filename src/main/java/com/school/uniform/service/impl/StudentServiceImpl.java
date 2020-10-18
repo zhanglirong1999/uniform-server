@@ -85,12 +85,14 @@ public class StudentServiceImpl implements StudentService {
         map.put("name",name);
         map.put("gender",gender);
         map.put("schoolNum",schoolnum);
+        map.put("schoolId",schoolId);
         map.put("schoolName",school);
         map.put("height",height);
         map.put("chest",chest);
         map.put("weight",weight);
         map.put("waistline",waistline);
         map.put("hipline",hipline);
+        map.put("class",student.getClass1());
         if(student.getGender()==0){
             map.put("avatar", CONST.ManAvatar);
         }else if (student.getGender()==1){

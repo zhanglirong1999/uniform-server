@@ -536,14 +536,12 @@ public class ProductServiceImpl implements ProductService {
             if (schoolId != null){
                 System.out.println("1");
                 example.createCriteria().andEqualTo("schoolId", schoolId).
-                        andEqualTo("form", type).andEqualTo("state","1")
-                .orEqualTo("state","2");
+                        andEqualTo("form", type).andNotEqualTo("state","0");
             }else {
                 System.out.println("?");
                 example.createCriteria().
                         andEqualTo("form", type)
-                        .andEqualTo("state","1")
-                        .orEqualTo("state","2");
+                        .andNotEqualTo("state","0");
             }
         }else {
             if (schoolId != null) {
