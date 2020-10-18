@@ -134,10 +134,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Object getSchoolList(Long schoolId) {
-        return productMapper.selectByExample(
-                Example.builder(Product.class).where(Sqls.custom().andEqualTo("schoolId",schoolId))
-                .build()
-        );
+        if(schoolId==-1){
+            return productMapper.selectByExample(
+                    Example.builder(Product.class).where(Sqls.custom().andEqualTo("deleted", 0))
+                            .build()
+            );
+        }else {
+            return productMapper.selectByExample(
+                    Example.builder(Product.class).where(Sqls.custom().andEqualTo("schoolId", schoolId))
+                            .build()
+            );
+        }
     }
 
     @Override
@@ -529,11 +536,14 @@ public class ProductServiceImpl implements ProductService {
             if (schoolId != null){
                 System.out.println("1");
                 example.createCriteria().andEqualTo("schoolId", schoolId).
-                        andEqualTo("form", type);
+                        andEqualTo("form", type).andEqualTo("state","1")
+                .orEqualTo("state","2");
             }else {
                 System.out.println("?");
                 example.createCriteria().
-                        andEqualTo("form", type);
+                        andEqualTo("form", type)
+                        .andEqualTo("state","1")
+                        .orEqualTo("state","2");
             }
         }else {
             if (schoolId != null) {
