@@ -14,5 +14,8 @@ public interface StudentMapper extends Mapper<Student> {
     @Select("SELECT name from student where studentId=${studentId}")
     String getStudentName(Long studentId);
 
+    @Select("SELECT schoolId from student where studentId=${studentId}")
+    Long getSchoolId(Long studentId);
+
 
 }

@@ -193,6 +193,8 @@ public class AccountController {
     ){
         String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
         redisUtil.setStudentId(studentId,accountId);
+        Long schoolId = studentMapper.getSchoolId(studentId);
+        redisUtil.setSchoolIdInRedis(schoolId,accountId);
         return "选择成功";
     }
 
