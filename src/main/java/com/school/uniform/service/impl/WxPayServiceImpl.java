@@ -8,6 +8,7 @@ import com.school.uniform.service.WxPayService;
 import com.school.uniform.util.ConstantUtil;
 
 import com.school.uniform.util.IpUtils;
+import com.school.uniform.util.PayUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +31,10 @@ public class WxPayServiceImpl implements WxPayService {
         String money = String.valueOf(amount * 100);
         //生成的随机字符串
         String nonce_str = WXPayUtil.generateNonceStr();
+        purchaseMapper.updateNonceStr(nonce_str,Long.parseLong(orderNo));
+
         //商品名称
-        String body = "购买校服";
+        String body = "buy uniform";
         //获取本机的ip地址
         String spbill_create_ip = IpUtils.getIpAddr(request);
         try {
@@ -42,6 +45,7 @@ public class WxPayServiceImpl implements WxPayService {
             requestMap.put("mch_id", CONST.mch_id);
             requestMap.put("out_trade_no", orderNo);                          // 商户订单号
             requestMap.put("total_fee", money);   // 总金额
+            requestMap.put("nonce_str", nonce_str);
             requestMap.put("spbill_create_ip", spbill_create_ip); // 终端IP
             requestMap.put("trade_type", "JSAPI");                              // App支付类型
             requestMap.put("notify_url", CONST.notify_url);   // 接收微信支付异步通知回调地址
@@ -49,48 +53,51 @@ public class WxPayServiceImpl implements WxPayService {
             System.out.println(requestMap);
 //            Map<String, String> resultMap = wxpay.unifiedOrder(requestMap);
 //            System.out.println(resultMap);
+            String prestr = PayUtil.createLinkString(requestMap);
+//            String sign = PayUtil.sign(prestr, CONST.key, "utf-8").toUpperCase();
+
             //MD5运算生成签名，这里是第一次签名，用于调用统一下单接口
-//            String sign = WXPayUtil.generateSignature(resultMap, CONST.key);
-//
-//            String xml = "<xml>" +
-//
-//                    "<appid>" + CONST.appId + "</appid>" +
-//
-//                    "<body><![CDATA[" + body + "]]></body>" +
-//
-//                    "<detail><![CDATA[" + body + "]]></detail>" +
-//
-//                    "<mch_id>" + CONST.mch_id + "</mch_id>" +
-//
-//                    "<nonce_str>" + nonce_str + "</nonce_str>" +
-//
-//                    "<sign>" + sign + "</sign>" +
-//
-//                    "<notify_url>" + CONST.notify_url + "</notify_url>" +
-//
-//                    "<openid>" + openId + "</openid>" +
-//
-//                    "<out_trade_no>" + orderNo + "</out_trade_no>" +
-//
-//                    "<spbill_create_ip>" + spbill_create_ip + "</spbill_create_ip>" +
-//
-//                    "<total_fee>" + money + "</total_fee>" +
-//
-//                    "<trade_type>JSAPI</trade_type>" +
-//
-//                    "</xml>";
+            String sign = WXPayUtil.generateSignature(requestMap, CONST.key);
+            String xml = "<xml>" +
+
+                    "<appid>" + CONST.appId + "</appid>" +
+
+                    "<body><![CDATA[" + body + "]]></body>" +
+
+                    "<mch_id>" + CONST.mch_id + "</mch_id>" +
+
+                    "<nonce_str>" + nonce_str + "</nonce_str>" +
+
+                    "<sign>" + sign + "</sign>" +
+
+                    "<notify_url>" + CONST.notify_url + "</notify_url>" +
+
+                    "<openid>" + openId + "</openid>" +
+
+                    "<out_trade_no>" + orderNo + "</out_trade_no>" +
+
+                    "<spbill_create_ip>" + spbill_create_ip + "</spbill_create_ip>" +
+
+                    "<total_fee>" +money + "</total_fee>" +
+
+                    "<trade_type>JSAPI</trade_type>" +
+
+                    "</xml>";
 
             //可以直接生成xml
-            String xml = WXPayUtil.generateSignedXml(requestMap,CONST.key, WXPayConstants.SignType.MD5);
+//            String xml = WXPayUtil.generateSignedXml(requestMap,CONST.key, WXPayConstants.SignType.MD5);
+            System.out.println(xml);
 
             String result = "";
 
             try {
-                result = ConstantUtil.httpRequest(CONST.pay_url, "POST", xml);
+                result = PayUtil.httpRequest(CONST.pay_url, "POST", xml);
+                System.out.println(result);
                 Map map = WXPayUtil.xmlToMap(result);
                 System.out.println("map:");
                 System.out.println(map);
                 String return_code = (String) map.get("return_code");//返回状态码
+                System.out.println("return_code:"+return_code);
 
                 //返回给移动端需要的参数
                 Map<String, String> response = new HashMap<String, String>();

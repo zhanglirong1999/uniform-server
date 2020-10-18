@@ -52,7 +52,8 @@ public class ConstantUtil {
         ERROR_SIZEANDPRICE(32,"大小和价格数目不匹配"),
         NO_SOLICIT(33,"没有此征订订单"),
         NO_BUYTWO(34,"不能重复购买此订单"),
-        ERROR_PAY(35,"微信支付统一下单失败")
+        ERROR_PAY(35,"微信支付统一下单失败"),
+        ERROR_ADMIN(36,"用户名或手机号错误")
 
         ;
         public final Integer code;

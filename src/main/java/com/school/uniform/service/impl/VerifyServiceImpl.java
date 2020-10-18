@@ -220,15 +220,16 @@ public class VerifyServiceImpl implements VerifyService {
 
         // 当前电话号码错误或者管理员姓名错误
         if (admin == null || !admin.getName().equals(username)) {
-            redisStringManager.incrementOrNew(
-                    ipKey, blockTime, blockTimeUnit
-            );
-            throw new Exception(
-                    String.format(
-                            "输入的管理员%s错误! 请联系管理员 %s 验证您的身份!",
-                            (admin == null ? "电话号码" : "姓名"), guardPhone
-                    )
-            );
+//            redisStringManager.incrementOrNew(
+//                    ipKey, blockTime, blockTimeUnit
+//            );
+//            throw new Exception(
+//                    String.format(
+//                            "输入的管理员%s错误! 请联系管理员 %s 验证您的身份!",
+//                            (admin == null ? "电话号码" : "姓名"), guardPhone
+//                    )
+//            );
+            throw new BizException(ConstantUtil.BizExceptionCause.ERROR_ADMIN);
         }
 
         // 做到这里, 说明输入参数都是正确的, 走发起短信的流程

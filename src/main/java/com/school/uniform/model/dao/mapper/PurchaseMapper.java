@@ -15,4 +15,8 @@ public interface PurchaseMapper extends Mapper<Purchase> {
 
     @Update("UPDATE purchase set state='1' where nonceStr='${nonceStr}'")
     Integer updateState(String nonceStr);
+
+    @Update("UPDATE purchase set nonceStr='${nonceStr}' where orderId=${orderId}")
+    Integer updateNonceStr(String nonceStr,Long orderId);
+
 }
