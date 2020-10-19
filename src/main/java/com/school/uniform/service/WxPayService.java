@@ -15,7 +15,7 @@ public interface WxPayService {
      * @param amount: 实际支付金额
      * @return
      */
-    Object unifiedOrder(String orderNo, int amount, String openId,  HttpServletRequest request) throws Exception;
+    Object unifiedOrder(String orderNo, double amount, String openId,  HttpServletRequest request) throws Exception;
 
     /**
      * @Description: 订单支付异步通知

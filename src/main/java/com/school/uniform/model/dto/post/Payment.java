@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Payment {
     Long orderId;
-    int price;
+    double price;
 }

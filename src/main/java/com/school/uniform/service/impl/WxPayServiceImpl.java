@@ -25,11 +25,14 @@ public class WxPayServiceImpl implements WxPayService {
     private PurchaseMapper purchaseMapper;
 
     @Override
-    public Object unifiedOrder(String orderNo, int amount, String openId, HttpServletRequest request)
+    public Object unifiedOrder(String orderNo, double amount, String openId, HttpServletRequest request)
     {
         Map<String, String> requestMap = new HashMap<>();
-        String money = String.valueOf(amount * 100);
-        int moneyInt = amount*100;
+
+        int moneyInt = (int) (amount*100);
+        String money = String.valueOf(moneyInt);
+
+        System.out.println("money"+moneyInt+money);
         //生成的随机字符串
         String nonce_str = WXPayUtil.generateNonceStr();
         purchaseMapper.updateNonceStr(nonce_str,Long.parseLong(orderNo));
