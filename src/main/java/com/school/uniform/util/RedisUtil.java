@@ -1,6 +1,7 @@
 package com.school.uniform.util;
 
 import com.school.uniform.common.CONST;
+import com.school.uniform.exception.BizException;
 import com.school.uniform.model.dao.mapper.SolicitationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -20,7 +21,11 @@ public class RedisUtil {
     }
     public Long getSchoolId(String accountId){
         System.out.println(redisTemplate.opsForHash().get(accountId,CONST.SCHOOL_ID));
-        return (Long) redisTemplate.opsForHash().get(accountId,CONST.SCHOOL_ID);
+        if(redisTemplate.opsForHash().get(accountId,CONST.SCHOOL_ID)!=null) {
+            return (Long) redisTemplate.opsForHash().get(accountId, CONST.SCHOOL_ID);
+        }else {
+            throw new BizException(ConstantUtil.BizExceptionCause.LOSS_STUDENT);
+        }
     }
 
     public void setSolicitId(Long sid,String accountId){
