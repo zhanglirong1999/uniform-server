@@ -151,7 +151,7 @@ public class AccountController {
     @PostMapping("/getToken")
     public Object getToken(){
 //        String accountId= UUID.randomUUID().toString();
-        String accountId ="74e22097-00ff-489f-9a90-0a318558b34a";
+        String accountId ="17a189a9-6db8-4338-86b6-27e15f752a2a";
         String token = TokenUtil.createToken(accountId);
         System.out.println(token);
         return token;
