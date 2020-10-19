@@ -92,7 +92,7 @@ public class StudentServiceImpl implements StudentService {
         map.put("weight",weight);
         map.put("waistline",waistline);
         map.put("hipline",hipline);
-        map.put("class",student.getClass1());
+        map.put("class1",student.getClass1());
         if(student.getGender()==0){
             map.put("avatar", CONST.ManAvatar);
         }else if (student.getGender()==1){
