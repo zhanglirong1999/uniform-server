@@ -63,11 +63,19 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Object getStudentList(String accountId) {
         Long schoolId = redisUtil.getSchoolId(accountId);
-        Iterator<Student> iterator =  studentMapper.selectByExample(
+        Iterator<Student> iterator;
+        if(schoolId!=null){
+            iterator =  studentMapper.selectByExample(
                 Example.builder(Student.class).where(Sqls.custom().andEqualTo("accountId",accountId).
                         andEqualTo("schoolId",schoolId))
                         .build()
         ).iterator();
+        }else {
+            iterator =  studentMapper.selectByExample(
+                    Example.builder(Student.class).where(Sqls.custom().andEqualTo("accountId",accountId))
+                            .build()).iterator();
+        }
+
         LinkedList list = new LinkedList();
         while (iterator.hasNext()){
             Student student = iterator.next();
