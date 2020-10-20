@@ -116,7 +116,8 @@ public class AccountController {
                 newAccount.setAccountId(UUID.randomUUID().toString());
                 newAccount.setLastTime(new Date());
                 accountMapper.insertSelective(newAccount);
-                register.setToken(newAccount.getAccountId());
+                String token = TokenUtil.createToken(newAccount.getAccountId());
+                register.setToken(token);
                 register.setIsRegister(false);
                 return register;
             }
