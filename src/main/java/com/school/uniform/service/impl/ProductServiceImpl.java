@@ -115,6 +115,10 @@ public class ProductServiceImpl implements ProductService {
         Product product = new Product();
         product.setProductId(productId);
         productMapper.delete(product);
+        purchaseMapMapper.deleteByExample(
+                Example.builder(PurchaseMap.class).where(Sqls.custom().andEqualTo("productId",productId))
+                        .build()
+        );
     }
 
     @Override
