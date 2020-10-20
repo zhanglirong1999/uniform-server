@@ -411,7 +411,6 @@ public class ProductServiceImpl implements ProductService {
         while (iterator.hasNext()){
             Purchase purchase = iterator.next();
             System.out.println(purchase);
-            Map<String,Object> map = new HashMap<>();
             Long orderId = purchase.getOrderId();
 
             Iterator<PurchaseMap> iteratorMap = purchaseMapMapper.selectByExample(
@@ -432,6 +431,7 @@ public class ProductServiceImpl implements ProductService {
                 String number=purchase.getNumber();
                 Integer sex = purchaseMap.getSex();
                 Integer count = purchaseMap.getCount();
+                Map<String,Object> map = new HashMap<>();
                 map.put("productId",productId);
                 map.put("price",pricing);
                 map.put("size",size);
