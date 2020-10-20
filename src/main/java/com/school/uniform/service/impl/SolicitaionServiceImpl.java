@@ -177,16 +177,20 @@ public class SolicitaionServiceImpl implements SolicitaionService {
                     Example.builder(Product.class).where(Sqls.custom().andEqualTo("productId",productId))
                             .build()
             );
-            Map<String,Object> map = new HashMap<>();
-            map.put("productId",product.getProductId());
-            map.put("productName",product.getProductName());
-            map.put("type",product.getType());
-            map.put("img",product.getImg());
-            map.put("price",product.getPrice());
-            map.put("freight",product.getFreight());
-            map.put("description",product.getDescription());
-            map.put("count",soliciteMap.getCount());
-            list.add(map);
+            if(product==null){
+                continue;
+            }else {
+                Map<String, Object> map = new HashMap<>();
+                map.put("productId", product.getProductId());
+                map.put("productName", product.getProductName());
+                map.put("type", product.getType());
+                map.put("img", product.getImg());
+                map.put("price", product.getPrice());
+                map.put("freight", product.getFreight());
+                map.put("description", product.getDescription());
+                map.put("count", soliciteMap.getCount());
+                list.add(map);
+            }
         }
         return list;
     }
