@@ -22,9 +22,9 @@ public class RedisUtil {
     public Long getSchoolId(String accountId){
         System.out.println(redisTemplate.opsForHash().get(accountId,CONST.SCHOOL_ID));
         if(redisTemplate.opsForHash().get(accountId,CONST.SCHOOL_ID)!=null) {
-            return null;
+            return (Long) redisTemplate.opsForHash().get(accountId, CONST.SCHOOL_ID);
         }else {
-            throw new BizException(ConstantUtil.BizExceptionCause.LOSS_STUDENT);
+            return null;
         }
     }
 
