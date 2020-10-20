@@ -533,7 +533,7 @@ public class ProductServiceImpl implements ProductService {
             ,Integer pageSize,Integer pageIndex) {
         Example example = new Example(Purchase.class);
         if(state.equals("0")){
-            if (schoolId != null){
+            if (schoolId != 0){
                 System.out.println("1");
                 example.createCriteria().andEqualTo("schoolId", schoolId).
                         andEqualTo("form", type).andNotEqualTo("state","0");
@@ -544,7 +544,7 @@ public class ProductServiceImpl implements ProductService {
                         .andNotEqualTo("state","0");
             }
         }else {
-            if (schoolId != null) {
+            if (schoolId != 0) {
                 System.out.println("2");
                 example.createCriteria().andEqualTo("schoolId", schoolId).
                         andEqualTo("form", type)
