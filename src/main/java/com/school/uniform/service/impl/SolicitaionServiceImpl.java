@@ -179,7 +179,9 @@ public class SolicitaionServiceImpl implements SolicitaionService {
             );
             if(product==null){
                 continue;
+
             }else {
+                
                 Map<String, Object> map = new HashMap<>();
                 map.put("productId", product.getProductId());
                 map.put("productName", product.getProductName());
