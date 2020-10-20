@@ -37,6 +37,7 @@ public class WxPayController {
     @TokenRequired
     @PostMapping("/callback")
     public Object callBack(HttpServletRequest request,HttpServletResponse response) throws Exception {
+        System.out.println("开始回调");
         return wxPayService.callBack(request,response);
     }
 
