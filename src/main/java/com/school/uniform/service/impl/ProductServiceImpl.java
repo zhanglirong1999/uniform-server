@@ -312,7 +312,7 @@ public class ProductServiceImpl implements ProductService {
             }
 
             PurchaseMap purchaseMap = new PurchaseMap();
-            purchaseMap.setPurId(ConstantUtil.generateId());
+            purchaseMap.setPurId(orderId);
             purchaseMap.setCount(count);
             purchaseMap.setProductId(productId);
             purchaseMap.setSize(size);
