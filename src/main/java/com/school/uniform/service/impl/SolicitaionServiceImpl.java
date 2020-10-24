@@ -234,4 +234,32 @@ public class SolicitaionServiceImpl implements SolicitaionService {
         maps.put("product",list);
         return maps;
     }
+
+    @Override
+    public Object getSolicitProduct(Long sid) {
+        Iterator<SoliciteMap> iterator = solicitemapMapper.selectByExample(
+                Example.builder(SoliciteMap.class).where(Sqls.custom().andEqualTo("solicitId",sid))
+                        .build()
+        ).iterator();
+        List list = new LinkedList();
+        while (iterator.hasNext()){
+            Map<String,Object> map = new HashMap<>();
+            SoliciteMap soliciteMap = iterator.next();
+            Integer count = soliciteMap.getCount();
+            Long productId = soliciteMap.getProductId();
+            Product product = productMapper.selectOneByExample(
+                    Example.builder(SoliciteMap.class).where(Sqls.custom().andEqualTo("productId",productId))
+                            .build()
+            );
+            map.put("count",count);
+            map.put("productId",productId);
+            map.put("productName",product.getProductName());
+            map.put("description",product.getDescription());
+            map.put("img",product.getImg());
+            map.put("price",product.getPrice());
+            map.put("freight",product.getFreight());
+            list.add(map);
+        }
+        return list;
+    }
 }

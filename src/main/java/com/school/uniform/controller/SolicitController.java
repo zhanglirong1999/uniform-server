@@ -85,4 +85,13 @@ public class SolicitController {
         Long sid = redisUtil.getSolicitId(accountId);
         return solicitaionService.getUserSolicit(sid);
     }
+
+
+    @TokenRequired
+    @GetMapping("/filrate")
+    public Object getSolicitFilrate(
+            @RequestParam Long sid
+    ){
+        return solicitaionService.getSolicitProduct(sid);
+    }
 }
