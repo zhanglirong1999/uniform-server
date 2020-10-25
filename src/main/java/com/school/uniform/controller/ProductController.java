@@ -103,6 +103,7 @@ public class ProductController {
      */
     @TokenRequired
     @PostMapping("/add")
+    @ResponseBody
     public Object addProduct(
             @ModelAttribute ProductAdd productAdd
             ){
@@ -112,6 +113,7 @@ public class ProductController {
 
     @TokenRequired
     @PostMapping("/change")
+    @ResponseBody
     public Object postProduct(
             @ModelAttribute ProductPost productPost
     ){
