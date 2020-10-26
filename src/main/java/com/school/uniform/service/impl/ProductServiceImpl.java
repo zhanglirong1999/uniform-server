@@ -12,6 +12,7 @@ import com.school.uniform.model.dto.PageResult;
 import com.school.uniform.model.dto.post.*;
 import com.school.uniform.service.QCloudFileManager;
 import com.school.uniform.util.RedisUtil;
+import com.squareup.okhttp.internal.Internal;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import com.school.uniform.common.IdGenerator;
@@ -175,6 +176,7 @@ public class ProductServiceImpl implements ProductService {
         }
         String[] sizes = productAdd.getSize();
         String[] prices = productAdd.getPrice();
+        Integer[] counts = productAdd.getCount();
 
         if(proName.equals("")||img.equals("")){
             throw new BizException(ConstantUtil.BizExceptionCause.LOSS_DETAIL);
@@ -189,7 +191,7 @@ public class ProductServiceImpl implements ProductService {
         product.setSex(sex);
         product.setSchoolId(schoolId);
         String price="10000.0";
-        if(sizes.length!=prices.length){
+        if(sizes.length!=prices.length||sizes.length!=counts.length){
             throw new BizException(ConstantUtil.BizExceptionCause.ERROR_SIZEANDPRICE);
         }
 
@@ -197,6 +199,7 @@ public class ProductServiceImpl implements ProductService {
             for(int i=0;i<sizes.length;i++){
                 String price1 = prices[i];
                 String size = sizes[i];
+                Integer count = counts[i];
                 if(Double.valueOf(price)>Double.valueOf(price1)){
                     price = price1;
                 }  //将最低价格作为商品价格保存
@@ -208,6 +211,7 @@ public class ProductServiceImpl implements ProductService {
                 productSon.setId(id);
                 productSon.setPrice(price1);
                 productSon.setSize(size);
+                productSon.setCount(count);
                 productSon.setProductId(productId);
                 priceMapper.insert(productSon);
             }
@@ -278,6 +282,7 @@ public class ProductServiceImpl implements ProductService {
             Detail detail = new Detail();
             detail.setPrice(price.getPrice());
             detail.setSize(price.getSize());
+            detail.setCount(price.getCount());
             linkedList.add(detail);
         }
         map.put("detail",linkedList);
@@ -322,6 +327,7 @@ public class ProductServiceImpl implements ProductService {
             purchaseMap.setSize(size);
             purchaseMap.setSex(sex);
             Long priceId = productMapper.getPriceId(productId,size);
+            priceMapper.updateCount(priceId);
             String price = priceMapper.selectOneByExample(
                     Example.builder(Price.class).where(Sqls.custom().andEqualTo("id",priceId))
                             .build()
@@ -665,6 +671,7 @@ public class ProductServiceImpl implements ProductService {
         }
         String[] sizes = productPost.getSize();
         String[] prices = productPost.getPrice();
+        Integer[] counts = productPost.getCount();
         if (!proName.equals("")) {
             product.setProductName(proName);
         }
@@ -693,6 +700,7 @@ public class ProductServiceImpl implements ProductService {
             for(int i=0;i<sizes.length;i++){
                 String price1 = prices[i];
                 String size = sizes[i];
+                Integer count = counts[i];
                 if(Double.valueOf(price)>Double.valueOf(price1)){
                     price = price1;
                 }  //将最低价格作为商品价格保存
@@ -704,6 +712,7 @@ public class ProductServiceImpl implements ProductService {
                 productSon.setId(id);
                 productSon.setPrice(price1);
                 productSon.setSize(size);
+                productSon.setCount(count);
                 productSon.setProductId(productId);
                 priceMapper.insert(productSon);
             }

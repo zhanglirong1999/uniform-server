@@ -20,4 +20,6 @@ public class Price {
 
     private String size;
 
+    private Integer count;
+
 }

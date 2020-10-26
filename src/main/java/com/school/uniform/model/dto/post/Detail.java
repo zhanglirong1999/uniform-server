@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class Detail {
     String price;
     String size;
+    Integer count;
 }

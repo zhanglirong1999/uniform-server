@@ -26,4 +26,5 @@ public class ProductAdd {
     Integer sex;
     String[] size;
     String[] price;
+    Integer[] count;
 }
