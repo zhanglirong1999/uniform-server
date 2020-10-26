@@ -327,7 +327,7 @@ public class ProductServiceImpl implements ProductService {
             purchaseMap.setSize(size);
             purchaseMap.setSex(sex);
             Long priceId = productMapper.getPriceId(productId,size);
-            priceMapper.updateCount(priceId);
+            priceMapper.updateCount(priceId,count);
             String price = priceMapper.selectOneByExample(
                     Example.builder(Price.class).where(Sqls.custom().andEqualTo("id",priceId))
                             .build()

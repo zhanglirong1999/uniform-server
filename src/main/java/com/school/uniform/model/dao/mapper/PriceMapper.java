@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PriceMapper extends Mapper<Price> {
 
-    @Update("UPDATE price set count=(count-1) where id=${id}")
-    Integer updateCount(Long id);
+    @Update("UPDATE price set count=(count-${num}) where id=${id}")
+    Integer updateCount(Long id,Integer num);
 
 }
