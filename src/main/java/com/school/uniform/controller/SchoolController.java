@@ -1,5 +1,6 @@
 package com.school.uniform.controller;
 
+import com.school.uniform.common.CONST;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.model.dao.entity.School;
@@ -7,6 +8,8 @@ import com.school.uniform.model.dto.post.SchoolAdd;
 import com.school.uniform.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
@@ -16,6 +19,8 @@ public class SchoolController {
     @Autowired
     private SchoolService schoolService;
 
+    @Autowired
+    private HttpServletRequest request;
     /**
      * 新增学校
      * @param schoolAdd
@@ -66,6 +71,17 @@ public class SchoolController {
     @GetMapping("/list")
     public Object getSchoolList(){
         return schoolService.getSchoolList();
+    }
+
+    /**
+     * 获取学校的班级年级
+     * @return
+     */
+    @TokenRequired
+    @GetMapping("/classes")
+    public Object getSchoolClass(){
+        String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
+        return schoolService.getSchoolClass(accountId);
     }
 
 

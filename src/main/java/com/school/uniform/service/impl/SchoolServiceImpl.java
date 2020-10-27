@@ -3,12 +3,14 @@ package com.school.uniform.service.impl;
 import com.school.uniform.exception.BizException;
 import com.school.uniform.model.dao.entity.*;
 import com.school.uniform.model.dao.mapper.SchoolMapper;
+import com.school.uniform.model.dao.mapper.SclassMapper;
 import com.school.uniform.model.dao.mapper.StudentMapper;
 import com.school.uniform.model.dao.mapper.TagMapper;
 import com.school.uniform.model.dto.post.SchoolAdd;
 import com.school.uniform.model.dto.post.TagAdd;
 import com.school.uniform.service.SchoolService;
 import com.school.uniform.util.ConstantUtil;
+import com.school.uniform.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -24,6 +26,12 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private SclassMapper sclassMapper;
 
     @Override
     public void addSchool(SchoolAdd schoolAdd) {
@@ -98,6 +106,12 @@ public class SchoolServiceImpl implements SchoolService {
         }
         map.put("studentId",studentIds);
         return map;
+    }
+
+    @Override
+    public Object getSchoolClass(String accountId) {
+        Long schoolId = redisUtil.getSchoolId(accountId);
+        return sclassMapper.getSchoolClass(schoolId);
     }
 
 

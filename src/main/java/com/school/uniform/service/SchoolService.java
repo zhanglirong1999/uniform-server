@@ -12,4 +12,5 @@ public interface SchoolService {
     void deleteSchool(Long schoolId);
     Object getSchoolList();
     Object getUserStudent(Long schoolId,String accountId);
+    Object getSchoolClass(String accountId);
 }
