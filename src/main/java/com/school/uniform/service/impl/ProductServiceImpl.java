@@ -358,13 +358,19 @@ public class ProductServiceImpl implements ProductService {
         purchase.setAccountId(accountId);
         purchase.setPositionId(positionId);
         purchase.setForm(form);
-        purchase.setTotal(String.valueOf(totalPrice+freight));
+        Map<String,Object> map= new HashMap<>();
+        map.put("orderId",orderId);
+        if(type.equals("0")) {
+            purchase.setTotal(String.valueOf(totalPrice + freight));
+            map.put("price",String.valueOf(totalPrice+freight));
+        }else {
+            purchase.setTotal(String.valueOf(totalPrice));
+            map.put("price",String.valueOf(totalPrice));
+        }
         purchase.setSchoolId(schoolId);
         purchase.setStudentId(studentId);
         purchaseMapper.insert(purchase);
-        Map<String,Object> map= new HashMap<>();
-        map.put("orderId",orderId);
-        map.put("price",String.valueOf(totalPrice+freight));
+
         return map;
 
 
