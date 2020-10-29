@@ -52,16 +52,16 @@ public class RedisUtil {
     }
 
     public void setPriceIds(Long orderId, List<Long> priceIds,List<Integer> nums){
-        redisTemplate.opsForHash().put(orderId, CONST.PRICE_IDS,priceIds);
-        redisTemplate.opsForHash().put(orderId, CONST.COUNT_PRICE,nums);
+        redisTemplate.opsForHash().put(String.valueOf(orderId), CONST.PRICE_IDS,priceIds);
+        redisTemplate.opsForHash().put(String.valueOf(orderId), CONST.COUNT_PRICE,nums);
 
     }
 
     public List<Long> getPriceIds(Long orderId){
-        return (List<Long>) redisTemplate.opsForHash().get(orderId,CONST.PRICE_IDS);
+        return (List<Long>) redisTemplate.opsForHash().get(String.valueOf(orderId),CONST.PRICE_IDS);
     }
     public List<Integer> getCounts(Long orderId){
-        return (List<Integer>) redisTemplate.opsForHash().get(orderId,CONST.COUNT_PRICE);
+        return (List<Integer>) redisTemplate.opsForHash().get(String.valueOf(orderId),CONST.COUNT_PRICE);
 
     }
 
