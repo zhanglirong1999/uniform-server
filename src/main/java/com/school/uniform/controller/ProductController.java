@@ -3,6 +3,7 @@ package com.school.uniform.controller;
 import com.school.uniform.common.CONST;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
+import com.school.uniform.model.dao.mapper.PriceMapper;
 import com.school.uniform.model.dto.post.*;
 import com.school.uniform.service.ProductService;
 import com.school.uniform.util.RedisUtil;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
@@ -23,6 +25,9 @@ public class ProductController {
     private RedisUtil redisUtil;
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    private PriceMapper priceMapper;
     /**
      * 管理员查看订单总量等信息
      * @return
@@ -172,6 +177,14 @@ public class ProductController {
             @RequestParam Long orderId
     ){
         if ((isBuy.equals("1"))){
+            List<Long> priceIds = redisUtil.getPriceIds(orderId);
+            List<Integer> counts = redisUtil.getCounts(orderId);
+            for (int i=0;i<priceIds.size();i++){
+                Long priceId = priceIds.get(i);
+                Integer count = counts.get(i);
+                priceMapper.updateCount(priceId,count);
+
+            }
             return productService.hasBuy(orderId);
         }
         else {

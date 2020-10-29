@@ -30,6 +30,8 @@ public class CONST {
     public static final String SCHOOL_ID ="schoolId";
     public static final String SOLICIT_ID="sid";
     public static final String STUDENT_ID="studentId";
+    public static final String PRICE_IDS="priceIds";
+    public static final String COUNT_PRICE="counts";
 
 
     public static final String ManAvatar ="https://uniform-nj-1301042386.cos.ap-nanjing.myqcloud.com/38114208764928.jpg";

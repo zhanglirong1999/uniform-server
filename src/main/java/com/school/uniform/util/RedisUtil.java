@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class RedisUtil {
     @Autowired
@@ -47,6 +49,20 @@ public class RedisUtil {
 
     public Long getStudentId(String accountId){
         return (Long) redisTemplate.opsForHash().get(accountId,CONST.SCHOOL_ID);
+    }
+
+    public void setPriceIds(Long orderId, List<Long> priceIds,List<Integer> nums){
+        redisTemplate.opsForHash().put(orderId, CONST.PRICE_IDS,priceIds);
+        redisTemplate.opsForHash().put(orderId, CONST.COUNT_PRICE,nums);
+
+    }
+
+    public List<Long> getPriceIds(Long orderId){
+        return (List<Long>) redisTemplate.opsForHash().get(orderId,CONST.PRICE_IDS);
+    }
+    public List<Integer> getCounts(Long orderId){
+        return (List<Integer>) redisTemplate.opsForHash().get(orderId,CONST.COUNT_PRICE);
+
     }
 
 }

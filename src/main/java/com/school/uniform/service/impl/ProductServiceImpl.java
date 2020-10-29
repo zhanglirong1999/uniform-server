@@ -305,6 +305,8 @@ public class ProductServiceImpl implements ProductService {
         }
         Double freight=0.0;
         Double totalPrice=0.0;
+        List<Long> priceIds = new LinkedList<>();
+        List<Integer> nums = new LinkedList<>();
         for(int i=0;i<purchaseShops.length;i++) {
             Long productId = purchaseShops[i].getProductId();
             Integer count = purchaseShops[i].getCount();
@@ -327,7 +329,7 @@ public class ProductServiceImpl implements ProductService {
             purchaseMap.setSize(size);
             purchaseMap.setSex(sex);
             Long priceId = productMapper.getPriceId(productId,size);
-            priceMapper.updateCount(priceId,count);
+//            priceMapper.updateCount(priceId,count);
             String price = priceMapper.selectOneByExample(
                     Example.builder(Price.class).where(Sqls.custom().andEqualTo("id",priceId))
                             .build()
@@ -338,7 +340,8 @@ public class ProductServiceImpl implements ProductService {
             }
             totalPrice += Double.valueOf(price)*count;
             purchaseMapMapper.insert(purchaseMap);
-
+            priceIds.add(priceId);   //加入priceId
+            nums.add(count);  //加入count
             if(purchaseShop.getState().equals("1")) {
                 //表示从购物车购买,删除购物车这条数据信息
                 shoppingMapper.deleteByExample(
@@ -351,6 +354,8 @@ public class ProductServiceImpl implements ProductService {
             }
 
         }
+        redisUtil.setPriceIds(orderId,priceIds,nums);   //priceIds放入redis
+
         Purchase purchase = new Purchase();
         purchase.setOrderId(orderId);
         purchase.setState(statePur);
