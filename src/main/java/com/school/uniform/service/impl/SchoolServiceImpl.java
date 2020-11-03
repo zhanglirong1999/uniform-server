@@ -132,5 +132,10 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
+    @Override
+    public Object getSchoolClass2(Long schoolId) {
+        return schoolMapper.getClass(schoolId);
+    }
+
 
 }

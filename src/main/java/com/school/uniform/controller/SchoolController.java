@@ -94,6 +94,19 @@ public class SchoolController {
         return "新增成功";
     }
 
+    /**
+     * 查看学校班级信息
+     * @param schoolId
+     * @return
+     */
+    @TokenRequired
+    @GetMapping("/classInfo")
+    public Object getClassInfo(
+            @RequestParam Long schoolId
+    ){
+        return schoolService.getSchoolClass2(schoolId);
+    }
+
 
 
 

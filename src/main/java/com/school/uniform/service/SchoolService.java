@@ -15,4 +15,5 @@ public interface SchoolService {
     Object getUserStudent(Long schoolId,String accountId);
     Object getSchoolClass(String accountId);
     void addClass(AddClass addClass);
+    Object getSchoolClass2(Long schoolId);
 }

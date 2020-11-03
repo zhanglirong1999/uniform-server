@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
+import java.util.Map;
+
 @Repository
 public interface SchoolMapper extends Mapper<School> {
 
@@ -18,6 +20,9 @@ public interface SchoolMapper extends Mapper<School> {
 
     @Select("SELECT count(*) from school where deleted=0")
     Integer getSchoolSum();
+
+    @Select("SELECT grade,classes from sclass where schoolId=${id}")
+    List<Map<String,Object>> getClass(Long id);
 
 
 }
