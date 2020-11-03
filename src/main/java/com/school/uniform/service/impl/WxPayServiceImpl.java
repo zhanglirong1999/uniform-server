@@ -57,7 +57,8 @@ public class WxPayServiceImpl implements WxPayService {
             System.out.println(requestMap);
 //            Map<String, String> resultMap = wxpay.unifiedOrder(requestMap);
 //            System.out.println(resultMap);
-            String prestr = PayUtil.createLinkString(requestMap);
+            System.out.println("到这里");
+//            String prestr = PayUtil.createLinkString(requestMap);
 //            String sign = PayUtil.sign(prestr, CONST.key, "utf-8").toUpperCase();
 
             //MD5运算生成签名，这里是第一次签名，用于调用统一下单接口

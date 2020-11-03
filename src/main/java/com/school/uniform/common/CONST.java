@@ -22,7 +22,7 @@ public class CONST {
     public static final String key="huangxizhijianghaodi198919932020";
     public static final String SIGNTYPE="MD5";
     //微信统一下单接口地址
-    public static final String pay_url = "http://api.mch.weixin.qq.com/pay/unifiedorder";
+    public static final String pay_url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 
     //  "a5ba3736dbf6a66715b43fc05ab3f8db"
     // ACL Key

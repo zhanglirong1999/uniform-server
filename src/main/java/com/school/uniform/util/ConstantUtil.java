@@ -54,7 +54,8 @@ public class ConstantUtil {
         NO_BUYTWO(34,"不能重复购买此订单"),
         ERROR_PAY(35,"微信支付统一下单失败"),
         ERROR_ADMIN(36,"用户名或手机号错误"),
-        LOSS_STUDENT(37,"没有学生信息")
+        LOSS_STUDENT(37,"没有学生信息"),
+        ERROR_LENGTH(38,"年级于班级未一一对应")
 
         ;
         public final Integer code;

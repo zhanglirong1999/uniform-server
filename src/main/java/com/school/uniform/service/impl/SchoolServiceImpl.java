@@ -6,6 +6,7 @@ import com.school.uniform.model.dao.mapper.SchoolMapper;
 import com.school.uniform.model.dao.mapper.SclassMapper;
 import com.school.uniform.model.dao.mapper.StudentMapper;
 import com.school.uniform.model.dao.mapper.TagMapper;
+import com.school.uniform.model.dto.post.AddClass;
 import com.school.uniform.model.dto.post.SchoolAdd;
 import com.school.uniform.model.dto.post.TagAdd;
 import com.school.uniform.service.SchoolService;
@@ -112,6 +113,23 @@ public class SchoolServiceImpl implements SchoolService {
     public Object getSchoolClass(String accountId) {
         Long schoolId = redisUtil.getSchoolId(accountId);
         return sclassMapper.getSchoolClass(schoolId);
+    }
+
+    @Override
+    public void addClass(AddClass addClass) {
+        Long schoolId = addClass.getSchoolId();
+        String[] grades = addClass.getGrade();
+        String[] classes = addClass.getClasses();
+        if (grades.length!=classes.length){
+            throw new BizException(ConstantUtil.BizExceptionCause.ERROR_LENGTH);
+        }
+        for(int i=0;i<grades.length;i++){
+            Sclass sclass = new Sclass();
+            sclass.setSchoolId(schoolId);
+            sclass.setClasses(classes[i]);
+            sclass.setGrade(grades[i]);
+            sclassMapper.insert(sclass);
+        }
     }
 
 

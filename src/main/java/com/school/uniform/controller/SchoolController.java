@@ -4,6 +4,7 @@ import com.school.uniform.common.CONST;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.model.dao.entity.School;
+import com.school.uniform.model.dto.post.AddClass;
 import com.school.uniform.model.dto.post.SchoolAdd;
 import com.school.uniform.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +83,15 @@ public class SchoolController {
     public Object getSchoolClass(){
         String accountId = (String) request.getAttribute(CONST.ACL_ACCOUNTID);
         return schoolService.getSchoolClass(accountId);
+    }
+
+    @TokenRequired
+    @PostMapping("/class")
+    public Object addClass(
+            @RequestBody AddClass addClass
+            ){
+        schoolService.addClass(addClass);
+        return "新增成功";
     }
 
 
