@@ -7,6 +7,7 @@ import com.school.uniform.model.dao.mapper.SclassMapper;
 import com.school.uniform.model.dao.mapper.StudentMapper;
 import com.school.uniform.model.dao.mapper.TagMapper;
 import com.school.uniform.model.dto.post.AddClass;
+import com.school.uniform.model.dto.post.DeleteClass;
 import com.school.uniform.model.dto.post.SchoolAdd;
 import com.school.uniform.model.dto.post.TagAdd;
 import com.school.uniform.service.SchoolService;
@@ -128,6 +129,10 @@ public class SchoolServiceImpl implements SchoolService {
             sclass.setSchoolId(schoolId);
             sclass.setClasses(classes[i]);
             sclass.setGrade(grades[i]);
+            Integer count = sclassMapper.getClassCount(schoolId,grades[i],classes[i]);
+            if(count>0){
+                throw new BizException(ConstantUtil.BizExceptionCause.HAVE_CLASS);
+            }
             sclassMapper.insert(sclass);
         }
     }
@@ -135,6 +140,15 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public Object getSchoolClass2(Long schoolId) {
         return schoolMapper.getClass(schoolId);
+    }
+
+    @Override
+    public void deleteClass(DeleteClass deleteClass) {
+        Sclass sclass = new Sclass();
+        sclass.setSchoolId(deleteClass.getSchoolId());
+        sclass.setGrade(deleteClass.getGrade());
+        sclass.setClasses(deleteClass.getClasses());
+        sclassMapper.delete(sclass);
     }
 
 

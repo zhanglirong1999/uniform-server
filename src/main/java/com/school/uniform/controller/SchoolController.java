@@ -5,6 +5,7 @@ import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.model.dao.entity.School;
 import com.school.uniform.model.dto.post.AddClass;
+import com.school.uniform.model.dto.post.DeleteClass;
 import com.school.uniform.model.dto.post.SchoolAdd;
 import com.school.uniform.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,11 @@ public class SchoolController {
         return schoolService.getSchoolClass(accountId);
     }
 
+    /**
+     * 新增学校
+     * @param addClass
+     * @return
+     */
     @TokenRequired
     @PostMapping("/class")
     public Object addClass(
@@ -92,6 +98,20 @@ public class SchoolController {
             ){
         schoolService.addClass(addClass);
         return "新增成功";
+    }
+
+    /**
+     * 删除班级
+     * @param deleteClass
+     * @return
+     */
+    @TokenRequired
+    @DeleteMapping("/class")
+    public Object deleteClass(
+            @RequestBody DeleteClass deleteClass
+            ){
+        schoolService.deleteClass(deleteClass);
+        return "删除成功";
     }
 
     /**

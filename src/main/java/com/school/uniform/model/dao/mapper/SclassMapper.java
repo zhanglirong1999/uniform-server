@@ -13,4 +13,7 @@ public interface SclassMapper extends Mapper<Sclass> {
 
     @Select("SELECT grade,classes from sclass where schoolId=${schoolId}")
     List<Map<String,Object>> getSchoolClass(Long schoolId);
+
+    @Select("SELECT count(*) FROM sclass where schoolId=${schoolId} AND grade='${grade}' AND classes='${classes}'")
+    Integer getClassCount(Long schoolId,String grade,String classes);
 }

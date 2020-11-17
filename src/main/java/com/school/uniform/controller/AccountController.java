@@ -200,6 +200,12 @@ public class AccountController {
         return "选择成功";
     }
 
+    @TokenRequired
+    @GetMapping("/phone")
+    public Object getPhone(){
+        return "13390780072";
+    }
+
 
 
 }
