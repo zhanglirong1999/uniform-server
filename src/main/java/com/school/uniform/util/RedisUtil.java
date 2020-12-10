@@ -48,7 +48,7 @@ public class RedisUtil {
     }
 
     public Long getStudentId(String accountId){
-        return (Long) redisTemplate.opsForHash().get(accountId,CONST.SCHOOL_ID);
+        return (Long) redisTemplate.opsForHash().get(accountId,CONST.STUDENT_ID);
     }
 
     public void setPriceIds(Long orderId, List<Long> priceIds,List<Integer> nums){
