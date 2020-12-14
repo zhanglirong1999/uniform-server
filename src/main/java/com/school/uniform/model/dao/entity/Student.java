@@ -36,9 +36,12 @@ public class Student {
     private String waistline;
 
     private String hipline;
+
     @Column(name = "accountId")
 
     private String accountId;
+
+    private String phone;
 
 
 

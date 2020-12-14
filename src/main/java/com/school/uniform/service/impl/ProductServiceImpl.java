@@ -162,8 +162,18 @@ public class ProductServiceImpl implements ProductService {
         Integer sex = productAdd.getSex();
         Long schoolId = productAdd.getSchoolId();
         String img=null;
+        String img2=null,img3=null,img4=null;
         if(productAdd.getImg()!=null) {
              img = uploadFile(productAdd.getImg());  //上传图片并且生成url
+        }
+        if(productAdd.getImg2()!=null){
+            img2 = uploadFile(productAdd.getImg2());  //上传图片并且生成url
+        }
+        if(productAdd.getImg3()!=null){
+            img3 = uploadFile(productAdd.getImg3());  //上传图片并且生成url
+        }
+        if(productAdd.getImg4()!=null){
+            img4 = uploadFile(productAdd.getImg4());  //上传图片并且生成url
         }
         String tag = productAdd.getTag();
         String file=null;
@@ -185,6 +195,9 @@ public class ProductServiceImpl implements ProductService {
         product.setProductId(productId);
         product.setProductName(proName);
         product.setImg(img);
+        product.setImg2(img2);
+        product.setImg3(img3);
+        product.setImg4(img4);
         product.setDescription(description);
         product.setFreight(freight);
         product.setType(tag);
@@ -268,6 +281,10 @@ public class ProductServiceImpl implements ProductService {
         map.put("description",product.getDescription());
         map.put("freight",product.getFreight());
         map.put("img",product.getImg());
+        map.put("img2",product.getImg2());
+        map.put("img3",product.getImg3());
+        map.put("img4",product.getImg4());
+
         map.put("tag",product.getType());
         map.put("sex",product.getSex());
         map.put("schoolId",product.getSchoolId());
@@ -595,6 +612,10 @@ public class ProductServiceImpl implements ProductService {
             Long studentId = purchase.getStudentId();
             String class1 = studentMapper.getStudentClass(studentId);
             String name = studentMapper.getStudentName(studentId);
+            Student student = studentMapper.getStudent(studentId);
+            String height = student.getHeight();
+            String weight = student.getWeight();
+            String phone = student.getPhone();
             map.put("orderId",orderId);
             map.put("state",stating);
             map.put("number",number);
@@ -610,6 +631,9 @@ public class ProductServiceImpl implements ProductService {
             map.put("name",location.getName());
             map.put("class1",class1);
             map.put("studentName",name);
+            map.put("height",height);
+            map.put("weight",weight);
+            map.put("phone",phone);
             Iterator<PurchaseMap> iteratorMap = purchaseMapMapper.selectByExample(
                     Example.builder(PurchaseMap.class).where(Sqls.custom().andEqualTo("purId",orderId))
                             .build()
@@ -664,11 +688,24 @@ public class ProductServiceImpl implements ProductService {
         String freight = productPost.getFreight();
         Integer sex = productPost.getSex();
         Long schoolId = productPost.getSchoolId();
-        String img=null;
+        String img=null,img2=null,img3=null,img4=null;
         if(productPost.getImg()!=null) {
             img = uploadFile(productPost.getImg());  //上传图片并且生成url
             product.setImg(img);
         }
+        if(productPost.getImg2()!=null) {
+            img2 = uploadFile(productPost.getImg2());  //上传图片并且生成url
+            product.setImg2(img2);
+        }
+        if(productPost.getImg3()!=null) {
+            img3 = uploadFile(productPost.getImg3());  //上传图片并且生成url
+            product.setImg3(img3);
+        }
+        if(productPost.getImg4()!=null) {
+            img4 = uploadFile(productPost.getImg4());  //上传图片并且生成url
+            product.setImg4(img4);
+        }
+
         String file=null;
         if(productPost.getFile()!=null) {
             file = uploadFile(productPost.getFile());

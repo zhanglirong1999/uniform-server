@@ -30,6 +30,12 @@ public class Product {
 
     private String img;
 
+    private String img2;
+
+    private String img3;
+
+    private String img4;
+
     private String price;
 
     private Integer sex;

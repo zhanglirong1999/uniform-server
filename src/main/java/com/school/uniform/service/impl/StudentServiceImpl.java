@@ -41,6 +41,7 @@ public class StudentServiceImpl implements StudentService {
 
         student.setGender(studentInfo.getGender());
         student.setName(studentInfo.getName());
+        student.setPhone(studentInfo.getPhone());
 
         if(studentInfo.getHeight()!=null){
         student.setHeight(studentInfo.getHeight());}
@@ -93,6 +94,7 @@ public class StudentServiceImpl implements StudentService {
         map.put("waistline",waistline);
         map.put("hipline",hipline);
         map.put("class1",student.getClass1());
+        map.put("phone",student.getPhone());
         if(student.getGender()==0){
             map.put("avatar", CONST.ManAvatar);
         }else if (student.getGender()==1){
@@ -130,6 +132,10 @@ public class StudentServiceImpl implements StudentService {
         String waistline=putStudent.getWaistline();
         String hipline=putStudent.getHipline();
         String class1=putStudent.getClass1();
+        String phone = putStudent.getPhone();
+        if(phone!=null){
+            student.setPhone(phone);
+        }
         if(name!=null){
             student.setName(name);
         }

@@ -20,6 +20,9 @@ public class ProductAdd {
     String description;
     String freight;
     MultipartFile img;
+    MultipartFile img2;
+    MultipartFile img3;
+    MultipartFile img4;
     String tag;
     Long schoolId;
     MultipartFile file;
