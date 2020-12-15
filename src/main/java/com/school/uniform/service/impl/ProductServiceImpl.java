@@ -633,7 +633,7 @@ public class ProductServiceImpl implements ProductService {
             map.put("studentName",name);
             map.put("height",height);
             map.put("weight",weight);
-            map.put("phone",phone);
+            map.put("studentPhone",phone);
             Iterator<PurchaseMap> iteratorMap = purchaseMapMapper.selectByExample(
                     Example.builder(PurchaseMap.class).where(Sqls.custom().andEqualTo("purId",orderId))
                             .build()
