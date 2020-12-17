@@ -774,4 +774,22 @@ public class ProductServiceImpl implements ProductService {
                         .build()
         );
     }
+
+    @Override
+    public void postSendProduct(Send send) {
+        Long orderId = send.getOrderId();
+        String number = send.getNumber();
+        Purchase purchase = purchaseMapper.selectOneByExample(
+                Example.builder(Purchase.class).where(Sqls.custom().andEqualTo("orderId",orderId))
+                        .build());
+        if(purchase.getState().equals("0")){
+            throw new BizException(ConstantUtil.BizExceptionCause.IS_SHOPPING);
+        }
+        purchase.setState("2");
+        purchase.setNumber(number) ;
+        purchaseMapper.updateByExampleSelective(
+                purchase,Example.builder(Purchase.class).where(Sqls.custom().andEqualTo("orderId",orderId))
+                        .build()
+        );
+    }
 }

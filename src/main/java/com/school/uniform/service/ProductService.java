@@ -28,4 +28,5 @@ public interface ProductService {
     Object getSearchBy(Long schoolId ,String state,String type,Integer pageSize,Integer pageIndex);
     Object hasBuy(Long orderId);
     void postProduct(ProductPost productPost);
+    void postSendProduct(Send send);
 }

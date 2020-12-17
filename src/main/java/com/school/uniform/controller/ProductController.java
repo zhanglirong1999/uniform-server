@@ -257,6 +257,21 @@ public class ProductController {
         return "单号填写成功";
     }
 
+
+    /**
+     * 修改单号
+     * @param send
+     * @return
+     */
+    @TokenRequired
+    @PostMapping("/sendPut")
+    public Object changeSendProduct(
+            @RequestBody Send send
+    ){
+        productService.postSendProduct(send);
+        return "单号修改成功";
+    }
+
     /**
      * 获取质检文件的url
      * @param productId
