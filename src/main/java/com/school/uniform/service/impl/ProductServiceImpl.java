@@ -329,6 +329,11 @@ public class ProductServiceImpl implements ProductService {
             Integer count = purchaseShops[i].getCount();
             String size = purchaseShops[i].getSize();
             Integer sex = purchaseShops[i].getSex();
+            Product product = productMapper.getProductByIdAndSize(productId,size);
+            Integer nowCount = product.getCount();
+            if(nowCount<count){
+                throw new BizException(ConstantUtil.BizExceptionCause.ERROR_COUNT);
+            }
             if (count == null) {
                 throw new BizException(ConstantUtil.BizExceptionCause.LOSS_COUNT);
             }

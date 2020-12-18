@@ -40,6 +40,8 @@ public class Product {
 
     private Integer sex;
 
+    private Integer count;
+
     @LogicDelete(notDeletedValue = 0,isDeletedValue = 1)
     private Integer deleted;
 }

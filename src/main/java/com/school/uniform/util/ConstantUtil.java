@@ -56,7 +56,8 @@ public class ConstantUtil {
         ERROR_ADMIN(36,"用户名或手机号错误"),
         LOSS_STUDENT(37,"没有学生信息"),
         ERROR_LENGTH(38,"年级于班级未一一对应"),
-        HAVE_CLASS(39,"此年级班级已存在")
+        HAVE_CLASS(39,"此年级班级已存在"),
+        ERROR_COUNT(40,"数目大于库存")
 
         ;
         public final Integer code;
