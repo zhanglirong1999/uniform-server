@@ -1,5 +1,6 @@
 package com.school.uniform.model.dao.mapper;
 
+import com.school.uniform.model.dao.entity.Price;
 import com.school.uniform.model.dao.entity.Product;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
@@ -30,7 +31,7 @@ public interface ProductMapper extends Mapper<Product> {
     @Select("SELECT img FROM product where productId =${productId}")
     String getProductImg(Long productId);
 
-    @Select("SELECT * FROM product where productId =${productId} and size='${size}'")
-    Product getProductByIdAndSize(Long productId,String size);
+    @Select("SELECT * FROM price where productId =${productId} and size='${size}'")
+    Price getProductByIdAndSize(Long productId, String size);
 
 }
