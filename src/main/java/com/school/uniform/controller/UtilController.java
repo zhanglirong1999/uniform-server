@@ -79,7 +79,12 @@ public class UtilController {
         String fileName = UUID.randomUUID().toString() + System.currentTimeMillis()+ (".jpg");
         StringBuffer backUrl = new StringBuffer(); // 回调url
         StringBuffer info = new StringBuffer("https://api.weixin.qq.com/wxa/getwxacodeunlimit?");
-        String online = solicitationMapper.getOnlineType(getCode.getSid());
+        String online ;
+        if(getCode.getFlag().equals("0")){
+            online="0";
+        }else {
+            online=solicitationMapper.getOnlineType(getCode.getSid());
+        }
         String scene="s="+getCode.getSid()+"&f="+getCode.getFlag()+"&o="+online;
 //        String scene = getCode.getSid().toString();
         String page ="pages/index/index";
