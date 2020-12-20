@@ -311,6 +311,9 @@ public class ProductServiceImpl implements ProductService {
         Long studentId = redisUtil.getStudentId(accountId);
         System.out.println(purchaseShop);
         String type = purchaseShop.getType();   //线上线下
+        if(type==null){
+            type="0";
+        }
         Long positionId = purchaseShop.getPositionId();
         PurchaseShop[] purchaseShops = purchaseShop.getPurchaseShops();
         Long orderId = ConstantUtil.generateId();
