@@ -360,9 +360,9 @@ public class ProductServiceImpl implements ProductService {
                             .build()
             ).getPrice();
             purchaseMap.setPrice(price);
-            if(Double.valueOf(productMapper.getFreight(productId))>freight) {    //运费
-                freight = Double.valueOf(productMapper.getFreight(productId));
-            }
+            //if(Double.valueOf(productMapper.getFreight(productId))>freight) {    //运费
+                freight += Double.valueOf(productMapper.getFreight(productId));
+           // }
             totalPrice += Double.valueOf(price)*count;
             purchaseMapMapper.insert(purchaseMap);
             priceIds.add(priceId);   //加入priceId
