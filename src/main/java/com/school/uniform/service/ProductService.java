@@ -29,4 +29,5 @@ public interface ProductService {
     Object hasBuy(Long orderId);
     void postProduct(ProductPost productPost);
     void postSendProduct(Send send);
+    void deletePurchase(Long orderId);
 }

@@ -607,7 +607,7 @@ public class ProductServiceImpl implements ProductService {
         while (iterator.hasNext()){
             Map<String,Object> map= new HashMap<>();
             Purchase purchase = iterator.next();
-            Long orderId =purchase.getOrderId();
+                    Long orderId =purchase.getOrderId();
             String stating = purchase.getState();
             String number =purchase.getNumber();
             String accountId = purchase.getAccountId();
@@ -799,5 +799,11 @@ public class ProductServiceImpl implements ProductService {
                 purchase,Example.builder(Purchase.class).where(Sqls.custom().andEqualTo("orderId",orderId))
                         .build()
         );
+    }
+
+    @Override
+    public void deletePurchase(Long orderId) {
+        purchaseMapper.deletePurchase(orderId);
+        purchaseMapper.deleteMap(orderId);
     }
 }

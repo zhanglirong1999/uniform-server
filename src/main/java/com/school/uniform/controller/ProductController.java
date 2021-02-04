@@ -297,6 +297,19 @@ public class ProductController {
         return productService.getSearchBy(schoolId, state, type,pageSize,pageIndex);
     }
 
+    /**
+     * 删除订单
+     * @param orderId
+     * @return
+     */
+    @PostMapping("/order/delete")
+    public Object deletePurchase(
+            @RequestParam Long orderId
+    ){
+        productService.deletePurchase(orderId);
+        return "ok";
+    }
+
 
 
 
