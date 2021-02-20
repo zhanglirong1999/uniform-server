@@ -43,6 +43,8 @@ public class Student {
 
     private String phone;
 
+    private Integer deleted;
+
 
 
 }

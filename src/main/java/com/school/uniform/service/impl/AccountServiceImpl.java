@@ -67,7 +67,7 @@ public class AccountServiceImpl implements AccountService {
         if(schoolId!=null){
             iterator =  studentMapper.selectByExample(
                 Example.builder(Student.class).where(Sqls.custom().andEqualTo("accountId",accountId).
-                        andEqualTo("schoolId",schoolId))
+                        andEqualTo("schoolId",schoolId).andEqualTo("deleted",0))
                         .build()
         ).iterator();
         }else {

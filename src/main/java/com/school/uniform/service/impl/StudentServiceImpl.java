@@ -178,6 +178,6 @@ public class StudentServiceImpl implements StudentService {
         if(!student.getAccountId().equals(accountId)){
             throw new BizException(ConstantUtil.BizExceptionCause.LOW_AUTHORITY);
         }
-        studentMapper.delete(student);
+        studentMapper.deleteStudent(studentId);
     }
 }
