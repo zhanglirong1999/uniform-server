@@ -34,4 +34,9 @@ public interface ProductMapper extends Mapper<Product> {
     @Select("SELECT * FROM price where productId =${productId} and size='${size}'")
     Price getProductByIdAndSize(Long productId, String size);
 
+    @Select("select count(*) from purchase_map left join purchase p on purchase_map.purId = p.orderId where p.accountId='${accountId}' " +
+            "and p.state=1 " +
+            "and purchase_map.productId=${productId}")
+    Integer ifHasPurchase(String accountId,Long productId);
+
 }

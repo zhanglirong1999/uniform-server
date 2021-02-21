@@ -57,7 +57,8 @@ public class ConstantUtil {
         LOSS_STUDENT(37,"没有学生信息"),
         ERROR_LENGTH(38,"年级于班级未一一对应"),
         HAVE_CLASS(39,"此年级班级已存在"),
-        ERROR_COUNT(40,"数目大于库存")
+        ERROR_COUNT(40,"数目大于库存"),
+        HAS_BUY(41,"只能征订订购此商品一次")
 
         ;
         public final Integer code;

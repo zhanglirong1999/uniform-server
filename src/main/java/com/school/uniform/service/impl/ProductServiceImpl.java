@@ -346,6 +346,12 @@ public class ProductServiceImpl implements ProductService {
             if (sex == null) {
                 throw new BizException(ConstantUtil.BizExceptionCause.LOSS_SEX);
             }
+            if(form.equals("0")){
+                Integer buyCount = productMapper.ifHasPurchase(accountId,productId);
+                if(buyCount>0){
+                    throw new BizException(ConstantUtil.BizExceptionCause.HAS_BUY);
+                }
+            }
 
             PurchaseMap purchaseMap = new PurchaseMap();
             purchaseMap.setPurId(orderId);
