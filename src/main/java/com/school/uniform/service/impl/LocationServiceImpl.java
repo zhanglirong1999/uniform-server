@@ -77,6 +77,10 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public void deletePosition(Long positionId, String accountId) {
+        int count = locationMapper.getLocationCount(positionId);
+        if(count>0){
+            throw new BizException(ConstantUtil.BizExceptionCause.CANT_DELETE_LOCATION);
+        }
         Location location = locationMapper.selectOneByExample(
                 Example.builder(Location.class).where(Sqls.custom().
                         andEqualTo("locationId",positionId))

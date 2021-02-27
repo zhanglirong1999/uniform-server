@@ -58,7 +58,8 @@ public class ConstantUtil {
         ERROR_LENGTH(38,"年级于班级未一一对应"),
         HAVE_CLASS(39,"此年级班级已存在"),
         ERROR_COUNT(40,"数目大于库存"),
-        HAS_BUY(41,"只能征订订购此商品一次")
+        HAS_BUY(41,"只能征订订购此商品一次"),
+        CANT_DELETE_LOCATION(42,"此地址绑定了订单，无法删除")
 
         ;
         public final Integer code;
