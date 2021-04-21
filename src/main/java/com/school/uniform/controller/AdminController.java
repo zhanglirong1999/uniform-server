@@ -1,5 +1,6 @@
 package com.school.uniform.controller;
 
+import com.school.uniform.common.annotation.Log;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.model.dto.post.PhoneUsernameCodeVerifier;
 import com.school.uniform.model.dto.post.PhoneUsernameVerifier;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
-
+@Log
 @RestController
 @CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @RequestMapping("/admin")

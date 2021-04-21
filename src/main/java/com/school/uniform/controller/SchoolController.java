@@ -1,6 +1,7 @@
 package com.school.uniform.controller;
 
 import com.school.uniform.common.CONST;
+import com.school.uniform.common.annotation.Log;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.model.dao.entity.School;
@@ -12,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-
+@Log
 @RestController
 @CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @RequestMapping("/school")

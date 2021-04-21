@@ -1,5 +1,6 @@
 package com.school.uniform.controller;
 
+import com.school.uniform.common.annotation.Log;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.service.QCloudFileManager;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-
+@Log
 @RestController
 @CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @RequestMapping("/account")

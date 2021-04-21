@@ -2,6 +2,7 @@ package com.school.uniform.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.school.uniform.common.CONST;
+import com.school.uniform.common.annotation.Log;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.exception.BizException;
@@ -26,7 +27,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
+@Log
 @RestController
 @CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @WebResponse

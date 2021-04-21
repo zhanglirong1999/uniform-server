@@ -3,6 +3,7 @@ package com.school.uniform.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.school.uniform.common.CONST;
+import com.school.uniform.common.annotation.Log;
 import com.school.uniform.common.annotation.TokenRequired;
 import com.school.uniform.common.annotation.WebResponse;
 import com.school.uniform.exception.BizException;
@@ -31,7 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-
+@Log
 @RestController
 @CrossOrigin(origins = "http://localhost:18080", maxAge = 7200)
 @RequestMapping("/account")
