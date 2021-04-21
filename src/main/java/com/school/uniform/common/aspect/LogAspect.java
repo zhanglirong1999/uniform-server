@@ -52,7 +52,7 @@ public class LogAspect {
         long endTime = System.currentTimeMillis();
         int spendTime = (int) (endTime - startTime);
 
-        logger.info(String.format("请求成功... 请求开始时间: %d; 请求消耗时间: %d; %s", startTime, spendTime, basicInfo));
+        logger.info(String.format("请求成功... 请求开始时间: {}; 请求消耗时间: {}; {}", startTime, spendTime, basicInfo));
         return res;
     }
 
