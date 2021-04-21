@@ -33,3 +33,71 @@
 2021-04-21 17:56:52,475 INFO  http-nio-18080-exec-1 [o.s.w.s.DispatcherServlet initServletBean 547] : Completed initialization in 40 ms
 2021-04-21 17:56:52,670 INFO  http-nio-18080-exec-1 [c.s.u.c.a.LogAspect doAround 55] : 请求成功... 请求开始时间: {}; 请求消耗时间: {}; {}
 2021-04-21 17:58:27,325 INFO  http-nio-18080-exec-6 [c.s.u.c.a.LogAspect doAround 55] : 请求成功... 请求开始时间: {}; 请求消耗时间: {}; {}
+2021-04-21 18:03:45,647 INFO  background-preinit [o.h.v.i.u.Version <clinit> 21] : HV000001: Hibernate Validator 6.1.5.Final
+2021-04-21 18:03:45,707 INFO  restartedMain [c.s.u.UniformApplication logStarting 55] : Starting UniformApplication on zhanglr with PID 95884 (D:\seu\schoolUniform\target\classes started by beckham23 in D:\seu\schoolUniform)
+2021-04-21 18:03:45,713 INFO  restartedMain [c.s.u.UniformApplication logStartupProfileInfo 651] : No active profile set, falling back to default profiles: default
+2021-04-21 18:03:45,778 INFO  restartedMain [o.s.b.d.r.ChangeableUrls logTo 225] : The Class-Path manifest attribute in C:\Users\beckham23\.m2\repository\com\sun\xml\bind\jaxb-impl\2.1\jaxb-impl-2.1.jar referenced one or more files that do not exist: file:/C:/Users/beckham23/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb-api.jar,file:/C:/Users/beckham23/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/activation.jar,file:/C:/Users/beckham23/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jsr173_1.0_api.jar,file:/C:/Users/beckham23/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb1-impl.jar
+2021-04-21 18:03:45,779 INFO  restartedMain [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor logTo 225] : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-04-21 18:03:45,779 INFO  restartedMain [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor logTo 225] : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-04-21 18:03:46,742 INFO  restartedMain [o.s.d.r.c.RepositoryConfigurationDelegate multipleStoresDetected 249] : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-04-21 18:03:46,749 INFO  restartedMain [o.s.d.r.c.RepositoryConfigurationDelegate registerRepositoriesIn 127] : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-04-21 18:03:46,803 INFO  restartedMain [o.s.d.r.c.RepositoryConfigurationDelegate registerRepositoriesIn 187] : Finished Spring Data repository scanning in 33ms. Found 0 Redis repository interfaces.
+2021-04-21 18:03:47,999 INFO  restartedMain [o.s.b.w.e.t.TomcatWebServer initialize 108] : Tomcat initialized with port(s): 18080 (http)
+2021-04-21 18:03:48,012 INFO  restartedMain [o.a.c.h.Http11NioProtocol log 173] : Initializing ProtocolHandler ["http-nio-18080"]
+2021-04-21 18:03:48,013 INFO  restartedMain [o.a.c.c.StandardService log 173] : Starting service [Tomcat]
+2021-04-21 18:03:48,014 INFO  restartedMain [o.a.c.c.StandardEngine log 173] : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-04-21 18:03:48,017 INFO  restartedMain [o.a.c.c.AprLifecycleListener log 173] : Loaded Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2021-04-21 18:03:48,017 INFO  restartedMain [o.a.c.c.AprLifecycleListener log 173] : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2021-04-21 18:03:48,018 INFO  restartedMain [o.a.c.c.AprLifecycleListener log 173] : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2021-04-21 18:03:48,041 INFO  restartedMain [o.a.c.c.AprLifecycleListener log 173] : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2021-04-21 18:03:48,182 INFO  restartedMain [o.a.c.c.C.[.[.[/] log 173] : Initializing Spring embedded WebApplicationContext
+2021-04-21 18:03:48,183 INFO  restartedMain [o.s.b.w.s.c.ServletWebServerApplicationContext prepareWebApplicationContext 285] : Root WebApplicationContext: initialization completed in 2403 ms
+2021-04-21 18:03:48,803 INFO  restartedMain [c.a.d.s.b.a.DruidDataSourceAutoConfigure dataSource 56] : Init DruidDataSource
+2021-04-21 18:03:49,022 INFO  restartedMain [c.a.d.p.DruidDataSource init 994] : {dataSource-1} inited
+2021-04-21 18:03:50,147 INFO  restartedMain [c.s.u.c.c.RestTemplateConfig restTemplate 48] : -----restTemplate-----初始化完成
+2021-04-21 18:03:51,801 INFO  restartedMain [t.m.m.a.MapperCacheDisabler removeStaticCache 60] : Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2021-04-21 18:03:51,802 INFO  restartedMain [t.m.m.a.MapperCacheDisabler removeStaticCache 60] : Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2021-04-21 18:03:51,803 INFO  restartedMain [t.m.m.a.MapperCacheDisabler removeStaticCache 60] : Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+2021-04-21 18:03:51,803 INFO  restartedMain [t.m.m.a.MapperCacheDisabler removeEntityHelperCache 83] : Clear EntityHelper entityTableMap cache.
+2021-04-21 18:03:52,380 INFO  restartedMain [o.s.b.d.a.OptionalLiveReloadServer startServer 58] : LiveReload server is running on port 35729
+2021-04-21 18:03:52,412 INFO  restartedMain [o.a.c.h.Http11NioProtocol log 173] : Starting ProtocolHandler ["http-nio-18080"]
+2021-04-21 18:03:52,460 INFO  restartedMain [o.s.b.w.e.t.TomcatWebServer start 220] : Tomcat started on port(s): 18080 (http) with context path ''
+2021-04-21 18:03:52,481 INFO  restartedMain [c.s.u.UniformApplication logStarted 61] : Started UniformApplication in 7.367 seconds (JVM running for 9.618)
+2021-04-21 18:04:03,156 INFO  http-nio-18080-exec-3 [o.a.c.c.C.[.[.[/] log 173] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-21 18:04:03,157 INFO  http-nio-18080-exec-3 [o.s.w.s.DispatcherServlet initServletBean 525] : Initializing Servlet 'dispatcherServlet'
+2021-04-21 18:04:03,173 INFO  http-nio-18080-exec-3 [o.s.w.s.DispatcherServlet initServletBean 547] : Completed initialization in 16 ms
+2021-04-21 18:04:03,353 INFO  http-nio-18080-exec-3 [c.s.u.c.a.LogAspect doAround 56] : 请求成功... 请求开始时间: {}; 请求消耗时间: {}; {}
+2021-04-21 18:04:55,164 INFO  background-preinit [o.h.v.i.u.Version <clinit> 21] : HV000001: Hibernate Validator 6.1.5.Final
+2021-04-21 18:04:55,208 INFO  restartedMain [c.s.u.UniformApplication logStarting 55] : Starting UniformApplication on zhanglr with PID 89460 (D:\seu\schoolUniform\target\classes started by beckham23 in D:\seu\schoolUniform)
+2021-04-21 18:04:55,213 INFO  restartedMain [c.s.u.UniformApplication logStartupProfileInfo 651] : No active profile set, falling back to default profiles: default
+2021-04-21 18:04:55,262 INFO  restartedMain [o.s.b.d.r.ChangeableUrls logTo 225] : The Class-Path manifest attribute in C:\Users\beckham23\.m2\repository\com\sun\xml\bind\jaxb-impl\2.1\jaxb-impl-2.1.jar referenced one or more files that do not exist: file:/C:/Users/beckham23/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb-api.jar,file:/C:/Users/beckham23/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/activation.jar,file:/C:/Users/beckham23/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jsr173_1.0_api.jar,file:/C:/Users/beckham23/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb1-impl.jar
+2021-04-21 18:04:55,263 INFO  restartedMain [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor logTo 225] : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-04-21 18:04:55,263 INFO  restartedMain [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor logTo 225] : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-04-21 18:04:56,046 INFO  restartedMain [o.s.d.r.c.RepositoryConfigurationDelegate multipleStoresDetected 249] : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-04-21 18:04:56,050 INFO  restartedMain [o.s.d.r.c.RepositoryConfigurationDelegate registerRepositoriesIn 127] : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-04-21 18:04:56,099 INFO  restartedMain [o.s.d.r.c.RepositoryConfigurationDelegate registerRepositoriesIn 187] : Finished Spring Data repository scanning in 32ms. Found 0 Redis repository interfaces.
+2021-04-21 18:04:57,201 INFO  restartedMain [o.s.b.w.e.t.TomcatWebServer initialize 108] : Tomcat initialized with port(s): 18080 (http)
+2021-04-21 18:04:57,209 INFO  restartedMain [o.a.c.h.Http11NioProtocol log 173] : Initializing ProtocolHandler ["http-nio-18080"]
+2021-04-21 18:04:57,209 INFO  restartedMain [o.a.c.c.StandardService log 173] : Starting service [Tomcat]
+2021-04-21 18:04:57,210 INFO  restartedMain [o.a.c.c.StandardEngine log 173] : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-04-21 18:04:57,211 INFO  restartedMain [o.a.c.c.AprLifecycleListener log 173] : Loaded Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2021-04-21 18:04:57,212 INFO  restartedMain [o.a.c.c.AprLifecycleListener log 173] : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2021-04-21 18:04:57,213 INFO  restartedMain [o.a.c.c.AprLifecycleListener log 173] : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2021-04-21 18:04:57,217 INFO  restartedMain [o.a.c.c.AprLifecycleListener log 173] : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2021-04-21 18:04:57,343 INFO  restartedMain [o.a.c.c.C.[.[.[/] log 173] : Initializing Spring embedded WebApplicationContext
+2021-04-21 18:04:57,343 INFO  restartedMain [o.s.b.w.s.c.ServletWebServerApplicationContext prepareWebApplicationContext 285] : Root WebApplicationContext: initialization completed in 2080 ms
+2021-04-21 18:04:57,920 INFO  restartedMain [c.a.d.s.b.a.DruidDataSourceAutoConfigure dataSource 56] : Init DruidDataSource
+2021-04-21 18:04:58,064 INFO  restartedMain [c.a.d.p.DruidDataSource init 994] : {dataSource-1} inited
+2021-04-21 18:04:59,052 INFO  restartedMain [c.s.u.c.c.RestTemplateConfig restTemplate 48] : -----restTemplate-----初始化完成
+2021-04-21 18:05:00,053 INFO  restartedMain [t.m.m.a.MapperCacheDisabler removeStaticCache 60] : Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2021-04-21 18:05:00,054 INFO  restartedMain [t.m.m.a.MapperCacheDisabler removeStaticCache 60] : Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2021-04-21 18:05:00,055 INFO  restartedMain [t.m.m.a.MapperCacheDisabler removeStaticCache 60] : Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+2021-04-21 18:05:00,055 INFO  restartedMain [t.m.m.a.MapperCacheDisabler removeEntityHelperCache 83] : Clear EntityHelper entityTableMap cache.
+2021-04-21 18:05:00,537 INFO  restartedMain [o.s.b.d.a.OptionalLiveReloadServer startServer 58] : LiveReload server is running on port 35729
+2021-04-21 18:05:00,566 INFO  restartedMain [o.a.c.h.Http11NioProtocol log 173] : Starting ProtocolHandler ["http-nio-18080"]
+2021-04-21 18:05:00,596 INFO  restartedMain [o.s.b.w.e.t.TomcatWebServer start 220] : Tomcat started on port(s): 18080 (http) with context path ''
+2021-04-21 18:05:00,616 INFO  restartedMain [c.s.u.UniformApplication logStarted 61] : Started UniformApplication in 5.961 seconds (JVM running for 7.961)
+2021-04-21 18:05:04,318 INFO  http-nio-18080-exec-2 [o.a.c.c.C.[.[.[/] log 173] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-21 18:05:04,318 INFO  http-nio-18080-exec-2 [o.s.w.s.DispatcherServlet initServletBean 525] : Initializing Servlet 'dispatcherServlet'
+2021-04-21 18:05:04,334 INFO  http-nio-18080-exec-2 [o.s.w.s.DispatcherServlet initServletBean 547] : Completed initialization in 15 ms
+2021-04-21 18:05:04,511 INFO  http-nio-18080-exec-2 [c.s.u.c.a.LogAspect doAround 56] : 请求成功... 请求开始时间: 1618999504377; 请求消耗时间: 134; IP: 0:0:0:0:0:0:0:1; 根路径: http://localhost:18080; 请求URL: http://localhost:18080/account/getToken; 请求URI: /account/getToken; 请求方法: POST; 请求函数名: getToken; 请求参数:null

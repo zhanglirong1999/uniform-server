@@ -48,11 +48,12 @@ public class LogAspect {
         String basicInfo = getBasicInformation(pjp);
 
         long startTime = System.currentTimeMillis();
+        System.out.println("这是请求开始时间"+startTime);
         res = pjp.proceed();
         long endTime = System.currentTimeMillis();
         int spendTime = (int) (endTime - startTime);
 
-        logger.info(String.format("请求成功... 请求开始时间: {}; 请求消耗时间: {}; {}", startTime, spendTime, basicInfo));
+        logger.info(String.format("请求成功... 请求开始时间: %d; 请求消耗时间: %d; %s", startTime, spendTime, basicInfo));
         return res;
     }
 

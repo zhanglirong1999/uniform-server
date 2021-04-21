@@ -1,2 +1,4 @@
 2021-04-21 17:55:56,022 WARN  restartedMain [o.m.s.m.ClassPathMapperScanner warn 44] : No MyBatis mapper was found in '[com.school.uniform]' package. Please check your configuration.
 2021-04-21 17:58:22,924 WARN  http-nio-18080-exec-5 [o.s.w.s.PageNotFound noHandlerFound 1251] : No mapping for POST /account/getToke
+2021-04-21 18:03:46,973 WARN  restartedMain [o.m.s.m.ClassPathMapperScanner warn 44] : No MyBatis mapper was found in '[com.school.uniform]' package. Please check your configuration.
+2021-04-21 18:04:56,264 WARN  restartedMain [o.m.s.m.ClassPathMapperScanner warn 44] : No MyBatis mapper was found in '[com.school.uniform]' package. Please check your configuration.
