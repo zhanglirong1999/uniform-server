@@ -43,7 +43,7 @@ public class LogAspect {
 
     @Around("logType()")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
-
+//        System.out.println("这是info");
         Object res;
         String basicInfo = getBasicInformation(pjp);
 
@@ -59,6 +59,7 @@ public class LogAspect {
 
     @AfterThrowing(throwing = "e", pointcut = "logType()")
     public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
+//        System.out.println("这是error");
         String basicInfo = getBasicInformation(joinPoint);
         String errorMessage = e.getMessage();
         StringWriter stringWriter = new StringWriter();

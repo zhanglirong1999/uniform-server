@@ -630,6 +630,7 @@ public class ProductServiceImpl implements ProductService {
             String height = student.getHeight();
             String weight = student.getWeight();
             String phone = student.getPhone();
+            Integer gender = student.getGender();
             map.put("orderId",orderId);
             map.put("state",stating);
             map.put("number",number);
@@ -648,6 +649,7 @@ public class ProductServiceImpl implements ProductService {
             map.put("height",height);
             map.put("weight",weight);
             map.put("studentPhone",phone);
+            map.put("gender",gender);
             Iterator<PurchaseMap> iteratorMap = purchaseMapMapper.selectByExample(
                     Example.builder(PurchaseMap.class).where(Sqls.custom().andEqualTo("purId",orderId))
                             .build()
