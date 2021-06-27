@@ -36,10 +36,11 @@ public class WxPayController {
         return wxPayService.unifiedOrder(String.valueOf(payment.getOrderId()) ,payment.getPrice(),openId,request);
     }
 
-    @TokenRequired
+  //  @TokenRequired
     @PostMapping("/callback")
     public Object callBack(HttpServletRequest request,HttpServletResponse response) throws Exception {
         System.out.println("开始回调");
+        //return "1111";
         return wxPayService.callBack(request,response);
     }
 
